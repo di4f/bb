@@ -13,6 +13,7 @@ func main() {
 	newLineStrPtr := flag.String("N", "\n", "Use this instead new line character.") 
 	joinStrsFlagPtr := flag.Bool("j", false, "Join strings('-J' is lower priority).")
 	joinStrPtr := flag.String("J", " ", "Use instead of space as separator.") 
+	backslashSeqFlagPtr := flag.Bool("e", false, "Interpret backslash special terminal characters.")
 	flag.Parse()
 
 	if *newLineFlagPtr {
@@ -22,7 +23,26 @@ func main() {
 		*joinStrPtr = ""
 	}
 
+	printStr := strings.Join(flag.Args(), *joinStrPtr)
+	if *backslashSeqFlagPtr {
+		seqs := map[string] string {
+			"\\\\" : "\\",
+			"\\a" : "\a",
+			"\\b" : "\b",
+			/*"\\c" : "\c",
+			"\\e" : "\e",*/
+			"\\f" : "\f",
+			"\\n" : "\n",
+			"\\r" : "\r",
+			"\\t" : "\t",
+			"\\v" : "\v",
+		}
+		for k, v := range seqs {
+			printStr = strings.ReplaceAll(printStr, k, v)
+		}
+	}
+
 	fmt.Printf("%s%s",
-	            strings.Join(flag.Args(), *joinStrPtr),
-	            *newLineStrPtr,)	
+	            printStr,
+	            *newLineStrPtr,)
 }
