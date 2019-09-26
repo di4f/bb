@@ -2,21 +2,27 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"strings"
-	"os"
 )
 
 func main() {
-	strsId := 1
-	firstOpt := os.Args[strsId]
-	nextLineStr := "\n"
-	joinStr := " "
-	if firstOpt == "-n" {
-		nextLineStr = ""
-		strsId += 1
+	newLineFlagPtr := flag.Bool("n", false,
+	                            "Don't add new line character('-N' is lower priority).")
+	newLineStrPtr := flag.String("N", "\n", "Use this instead new line character.") 
+	joinStrsFlagPtr := flag.Bool("j", false, "Join strings('-J' is lower priority).")
+	joinStrPtr := flag.String("J", " ", "Use instead of space as separator.") 
+	flag.Parse()
+
+	if *newLineFlagPtr {
+		*newLineStrPtr = ""	
 	}
+	if *joinStrsFlagPtr {
+		*joinStrPtr = ""
+	}
+
 	fmt.Printf("%s%s",
-	            strings.Join(os.Args[strsId:], joinStr),
-	            nextLineStr,)	
+	            strings.Join(flag.Args(), *joinStrPtr),
+	            *newLineStrPtr,)	
 }
