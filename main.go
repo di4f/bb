@@ -26,7 +26,7 @@ func main() {
 		utilName = binBase
 		args = os.Args[:]
 	} else {
-		if len(os.Args)<2 && binBase=="goblin" {
+		if len(os.Args)<2  {
 			for k, _ := range utilsMap {
 				fmt.Printf("%s\n", k)
 			}
