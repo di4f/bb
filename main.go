@@ -37,7 +37,7 @@ func main() {
 	}
 
 	if _, ok := utilsMap[utilName] ; !ok {
-		fmt.Printf("%s: No such uitl as '%s'.", )
+		fmt.Printf("%s: No such uitl as '%s'.\n", os.Args[0], utilName )
 		os.Exit(1)
 	}
 	status := utilsMap[utilName].(func([]string) int )(args)
