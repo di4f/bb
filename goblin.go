@@ -9,6 +9,7 @@ import(
 	"github.com/jienfak/goblin/mkdir"
 	"github.com/jienfak/goblin/gtrue"
 	"github.com/jienfak/goblin/gfalse"
+	"github.com/jienfak/goblin/sort"
 )
 
 func main() {
@@ -24,6 +25,7 @@ func main() {
 		"echo" : echo.Run,
 		"true" : gtrue.Run,
 		"false" : gfalse.Run,
+		"sort" : sort.Run,
 	}
 
 	if binBase := path.Base(os.Args[0]) ; binBase != "goblin" {
