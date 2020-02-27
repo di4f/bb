@@ -34,11 +34,11 @@ func fcat(f *os.File) error {
 }
 
 func Run(args []string) int {	
-	flagSet := flag.NewFlagSet(args[0], flag.ExitOnError)
-	flagSet.Parse(args[1:])
+	status := 0
 	arg0 := args[0]
 	args = args[1:]
-	status := 0
+	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
+	flagSet.Parse(args)
 	if len(args)>0 {
 		for _, p := range args {
 			e := cat(p)
