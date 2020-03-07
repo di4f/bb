@@ -39,11 +39,13 @@ func Run(args []string) int {
 	args = args[1:]
 	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
 	flagSet.Parse(args)
+	args = flagSet.Args()
 	if len(args)>0 {
 		for _, p := range args {
 			e := cat(p)
 			if e != nil {
 				fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
+				status = 1
 			}
 		}
 	} else {
