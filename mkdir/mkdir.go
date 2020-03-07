@@ -1,43 +1,42 @@
 package mkdir
 
 import(
+	"fmt"
 	"os"
 	"flag"
-	"log"
 )
 
 func Run(args []string) int {
+	status := 0
+	arg0 := args[0]
+	args = args[1:]
 	var (
-		parentFlag, verbFlag bool
+		parentFlag bool
 		 modeArg int
 	)
-	flagSet := flag.NewFlagSet(args[0], flag.ExitOnError)
-	status := 0
+	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
 	flagSet.BoolVar(&parentFlag, "p", false, "No error if existing, make parent as needed.")
 	flagSet.IntVar(&modeArg, "m", 0766, "Set file `mode`.")
-	flagSet.BoolVar(&verbFlag, "v", false, "Print a message for each created directory.")
-	if len(args) < 2 {
+	flagSet.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage of %s: %s [options] [files]\n", arg0, arg0)
+		flagSet.PrintDefaults()
+	}
+	flagSet.Parse(args)
+	args = flagSet.Args()
+	if len(args) == 0 {
 		flagSet.Usage()
 	}
-	flagSet.Parse(args[1:])
 	mode := os.FileMode(modeArg)
-	var verb *log.Logger
-	if verbFlag {
-		verb = log.New(os.Stdout, flagSet.Args()[0]+": ", 0)
-	}
-	warn := log.New(os.Stderr, flagSet.Args()[0]+": ", 0)
-	for _,  path := range flagSet.Args() {
-		var err error
+	for _,  path := range args {
+		var e error
 		if parentFlag {
-			err = os.MkdirAll(path, mode)
+			e = os.MkdirAll(path, mode)
 		} else {
-			err =  os.Mkdir(path, mode)
+			e =  os.Mkdir(path, mode)
 		}
-		if err != nil {
-			warn.Println(err)
+		if e != nil {
+			fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
 			status = 1
-		} else if verbFlag {
-			verb.Printf("Created directory '%s'.", path)
 		}
 	}
 	return status

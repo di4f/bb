@@ -32,7 +32,7 @@ func tac(p string) error {
 
 
 func ftac(f *os.File) error {
-	r := bufio.NewReader(os.Stdin)
+	r := bufio.NewReader(f)
 	var lines []string
 	for {
 		line, e := r.ReadString('\n')
@@ -52,6 +52,10 @@ func Run(args []string) int {
 	arg0 := args[0]
 	args = args[1:]
 	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
+	flagSet.Usage = func () {
+		fmt.Fprintf(os.Stderr, "Usage of %s: %s [files]\n", arg0, arg0)
+		flagSet.PrintDefaults()
+	}
 	flagSet.Parse(args)
 	args = flagSet.Args()
 	if len(args)>0 {
