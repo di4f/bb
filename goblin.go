@@ -12,6 +12,7 @@ import(
 	"github.com/jienfak/goblin/sort"
 	"github.com/jienfak/goblin/tac"
 	"github.com/jienfak/goblin/ls"
+	"github.com/jienfak/goblin/yes"
 )
 
 func main() {
@@ -30,6 +31,7 @@ func main() {
 		"sort" : sort.Run,
 		"tac" : tac.Run,
 		"ls" : ls.Run,
+		"yes" : yes.Run,
 	}
 
 	if binBase := path.Base(os.Args[0]) ; binBase != "goblin" {

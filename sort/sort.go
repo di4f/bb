@@ -9,7 +9,7 @@ import (
 	"flag"
 )
 
-func readLines() []string {
+func ReadLines() []string {
 
 	r := bufio.NewReader(os.Stdin)
 	a := make([]string, 0)
@@ -28,7 +28,7 @@ func Run(args []string) int {
 	flagSet.Parse(args[1:])
 	status := 0
 
-	lines := readLines()
+	lines := ReadLines()
 	sort.Strings(lines)
 	for _, l := range lines {
 		fmt.Print(l)
