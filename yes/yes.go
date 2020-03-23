@@ -6,7 +6,7 @@ import(
 	"fmt"
 	"flag"
 	"strings"
-	"github.com/jienfak/goblin/sort"
+	"github.com/jienfak/goblin/input"
 )
 
 func yes(s string){
@@ -30,14 +30,13 @@ func Run(args []string) int {
 	flagSet.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage of %s: %s [options] [string]\n", arg0, arg0)
 		flagSet.PrintDefaults()
-		
 	}
 	flagSet.Parse(args)
 	args = flagSet.Args()
 
 	if stdinFlag {
-		in := sort.ReadLines()
-		s = strings.Join(in, "")
+		in, _ := input.ReadAllRaw(os.Stdin)
+		s = string(in)
 	} else {
 		if len(args)>0 {
 			s = strings.Join(args, " ")
