@@ -6,6 +6,11 @@ import(
 	"strings"
 )
 
+var(
+	dirFlag bool
+	foldLvl int
+)
+
 func IsDir(p string) (bool, error) {
 	finfo, e := os.Stat(p)
 	if e != nil {
@@ -48,7 +53,7 @@ func ls(p string, fold int) error {
 	}
 
 	pp := strings.TrimRight(p, "/")
-	if isDir {
+	if isDir && !dirFlag {
 		l, e := ReadDir(p)
 
 		if e != nil {
@@ -70,19 +75,26 @@ func ls(p string, fold int) error {
 }
 
 func Run(args []string) int {
-	var(
-		foldLvl int
-	)
 	status := 0
 	arg0 := args[0]
 	args = args[1:]
 	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
-	flagSet.IntVar(&foldLvl, "r", 1, "List recursively with choosing deepness.")
+	flagSet.IntVar(&foldLvl, "r", 1, "List recursively with choosing deepness, can't be negative or zero.")
+	flagSet.BoolVar(&dirFlag, "d", false, "List directory as usual file, doesn't work with with recursive level not equal 1. ")
 	flagSet.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage of %s: %s [files]\n", arg0, arg0)
 		flagSet.PrintDefaults()
 	}
 	flagSet.Parse(args)
+	if foldLvl<1 {
+		flagSet.Usage()
+		return 1
+	}
+	
+	if foldLvl!=1 && dirFlag {
+		flagSet.Usage()
+		return 1
+	}
 	args = flagSet.Args()
 	if len(args) == 0 {
 		l, e := ReadDir(".")
