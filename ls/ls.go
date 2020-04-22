@@ -103,7 +103,10 @@ func Run(args []string) int {
 			fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
 		} else {
 			for _, f := range l {
-				fmt.Println(f.Name())
+				e := ls(f.Name(), foldLvl)
+				if e!=nil {
+					status = 1
+				}
 			}
 		}
 	} else {
