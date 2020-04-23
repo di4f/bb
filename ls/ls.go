@@ -44,33 +44,31 @@ func Stat(p string) (os.FileInfo, error) {
 }
 
 func ls(p string, fold int) error {
-	if fold == 0 {
-		return nil
-	}
 	isDir, e := IsDir(p)
 	if e != nil {
 		return e
 	}
 
 	pp := strings.TrimRight(p, "/")
-	if isDir && !dirFlag {
-		l, e := ReadDir(p)
 
-		if e != nil {
+	if !isDir || dirFlag || fold<1 {
+		fmt.Println(pp);
+	}else{
+		l, e := ReadDir(pp)
+		if e!=nil {
 			return e
 		}
 		for _, f := range l {
 			s := pp+"/"+f.Name()
-			fmt.Println(s)
-			ls(s, fold-1)
+			if b, _:=IsDir(s) ; b {
+				fmt.Println(s)
+			}
+			if 0<fold {
+				ls(s, fold-1)
+			}
 		}
-	} else {
-		f, e := Stat(p)	
-		if e != nil {
-			return e
-		}
-		fmt.Println(f.Name())
 	}
+	
 	return nil
 }
 
@@ -103,9 +101,10 @@ func Run(args []string) int {
 			fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
 		} else {
 			for _, f := range l {
-				e := ls(f.Name(), foldLvl)
+				e := ls(f.Name(), foldLvl-1)
 				if e!=nil {
 					status = 1
+					fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
 				}
 			}
 		}
