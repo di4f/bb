@@ -1,5 +1,7 @@
-# goblin
-GO Base utiL ImplementatioN
-Simple and crossplatform implementation of base(core) utils
-in highlevel Golang targeted to be easy to modify
-and implement new features.
+Base utils without exceed options and with additional options I needed in my scripts.
+Lack of a few features is a feature too.
+It is supposed to be as simple as possible.
+Inspired by Plan 9 utils.
+Install:
+	$ go build
+	$ go install
