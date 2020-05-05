@@ -6,11 +6,6 @@ import(
 	"strings"
 )
 
-var(
-	dirFlag bool
-	foldLvl int
-)
-
 func IsDir(p string) (bool, error) {
 	finfo, e := os.Stat(p)
 	if e != nil {
@@ -51,22 +46,20 @@ func ls(p string, fold int) error {
 
 	pp := strings.TrimRight(p, "/")
 
-	if !isDir || dirFlag || fold<1 {
-		fmt.Println(pp);
-	}else{
+	if isDir && fold>0 {
 		l, e := ReadDir(pp)
 		if e!=nil {
 			return e
 		}
 		for _, f := range l {
 			s := pp+"/"+f.Name()
-			if b, _:=IsDir(s) ; b {
-				fmt.Println(s)
-			}
-			if 0<fold {
+			fmt.Println(s)
+			if b, _ :=IsDir(s) ; b {
 				ls(s, fold-1)
 			}
 		}
+	} else {
+		fmt.Println(pp)
 	}
 	
 	return nil
@@ -77,34 +70,42 @@ func Run(args []string) int {
 	arg0 := args[0]
 	args = args[1:]
 	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
+	var foldLvl int
 	flagSet.IntVar(&foldLvl, "r", 1, "List recursively with choosing deepness, can't be negative or zero.")
-	flagSet.BoolVar(&dirFlag, "d", false, "List directory as usual file, doesn't work with with recursive level not equal 1. ")
 	flagSet.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage of %s: %s [files]\n", arg0, arg0)
 		flagSet.PrintDefaults()
 	}
 	flagSet.Parse(args)
-	if foldLvl<1 {
+	args = flagSet.Args()
+
+	if foldLvl<0 {
+		flagSet.Usage()
+		return 1
+	}
+
+	if foldLvl==0 && len(args)==0 {
 		flagSet.Usage()
 		return 1
 	}
 	
-	if foldLvl!=1 && dirFlag {
-		flagSet.Usage()
-		return 1
-	}
-	args = flagSet.Args()
 	if len(args) == 0 {
-		l, e := ReadDir(".")
-		if e != nil {
+		foldLvl -= 1
+		if l, e := ReadDir(".") ; e != nil {
 			status = 1
 			fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
 		} else {
 			for _, f := range l {
-				e := ls(f.Name(), foldLvl-1)
-				if e!=nil {
-					status = 1
-					fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
+				isDir, _ := IsDir(f.Name())
+				if isDir && foldLvl>0 {
+					fmt.Println(f.Name())
+					e := ls(f.Name(), foldLvl)
+					if e!=nil {
+						status = 1
+						fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
+					}
+				} else {
+					fmt.Println(f.Name())
 				}
 			}
 		}
