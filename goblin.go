@@ -13,6 +13,7 @@ import(
 	"github.com/jienfak/goblin/tac"
 	"github.com/jienfak/goblin/ls"
 	"github.com/jienfak/goblin/yes"
+	"github.com/jienfak/goblin/date"
 )
 
 func main() {
@@ -32,6 +33,7 @@ func main() {
 		"tac" : tac.Run,
 		"ls" : ls.Run,
 		"yes" : yes.Run,
+		"date" : date.Run,
 	}
 
 	if binBase := path.Base(os.Args[0]) ; binBase != "goblin" {
