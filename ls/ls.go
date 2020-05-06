@@ -46,19 +46,26 @@ func ls(p string, fold int) error {
 
 	pp := strings.TrimRight(p, "/")
 
-	if isDir && fold>0 {
+	if !isDir {
+		fmt.Println(pp)
+		return nil
+	}
+	
+	if fold>0 { 
+		/* It's a directory and it can be ls-ed. */
 		l, e := ReadDir(pp)
 		if e!=nil {
 			return e
 		}
 		for _, f := range l {
 			s := pp+"/"+f.Name()
-			fmt.Println(s)
-			if b, _ :=IsDir(s) ; b {
-				ls(s, fold-1)
+			if b, _ := IsDir(s) ; b && fold!=1 {
+				fmt.Println(s)
 			}
+			ls(s, fold-1)
 		}
 	} else {
+		/* It's finish directory. Fold==0 or fold<0. */
 		fmt.Println(pp)
 	}
 	
@@ -97,15 +104,14 @@ func Run(args []string) int {
 		} else {
 			for _, f := range l {
 				isDir, _ := IsDir(f.Name())
+
+				fmt.Println(f.Name())
 				if isDir && foldLvl>0 {
-					fmt.Println(f.Name())
 					e := ls(f.Name(), foldLvl)
 					if e!=nil {
 						status = 1
 						fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
 					}
-				} else {
-					fmt.Println(f.Name())
 				}
 			}
 		}
