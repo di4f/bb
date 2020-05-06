@@ -4,6 +4,7 @@ import(
 	"fmt"
 	"flag"
 	"strings"
+	"regexp"
 )
 
 func IsDir(p string) (bool, error) {
@@ -44,21 +45,27 @@ func ls(p string, fold int) error {
 		return e
 	}
 
-	pp := strings.TrimRight(p, "/")
+	// Delete repeating slashes.
+	slash := regexp.MustCompile("/+")
+	p = slash.ReplaceAllString(p, "/")
+	if p != "/" { // Do not trim if it is root dir.
+		p = strings.TrimRight(p, "/")
+	}
+	
 
 	if !isDir {
-		fmt.Println(pp)
+		fmt.Println(p)
 		return nil
 	}
 	
 	if fold>0 { 
 		/* It's a directory and it can be ls-ed. */
-		l, e := ReadDir(pp)
+		l, e := ReadDir(p)
 		if e!=nil {
 			return e
 		}
 		for _, f := range l {
-			s := pp+"/"+f.Name()
+			s := p+"/"+f.Name()
 			if b, _ := IsDir(s) ; b && fold!=1 {
 				fmt.Println(s)
 			}
@@ -66,7 +73,7 @@ func ls(p string, fold int) error {
 		}
 	} else {
 		/* It's finish directory. Fold==0 or fold<0. */
-		fmt.Println(pp)
+		fmt.Println(p)
 	}
 	
 	return nil
