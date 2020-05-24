@@ -14,6 +14,7 @@ import(
 	"github.com/jienfak/goblin/ls"
 	"github.com/jienfak/goblin/yes"
 	"github.com/jienfak/goblin/date"
+	"github.com/jienfak/goblin/uniq"
 )
 
 func main() {
@@ -34,6 +35,7 @@ func main() {
 		"ls" : ls.Run,
 		"yes" : yes.Run,
 		"date" : date.Run,
+		"uniq" : uniq.Run,
 	}
 
 	if binBase := path.Base(os.Args[0]) ; binBase != "goblin" {
