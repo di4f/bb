@@ -15,6 +15,7 @@ import(
 	"github.com/k1574/goblin/yes"
 	"github.com/k1574/goblin/date"
 	"github.com/k1574/goblin/uniq"
+	"github.com/k1574/goblin/quote"
 )
 
 func main() {
@@ -36,6 +37,7 @@ func main() {
 		"yes" : yes.Run,
 		"date" : date.Run,
 		"uniq" : uniq.Run,
+		"quote" : quote.Run,
 	}
 
 	if binBase := path.Base(os.Args[0]) ; binBase != "goblin" {
