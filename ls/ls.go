@@ -5,6 +5,11 @@ import(
 	"flag"
 	"strings"
 	"regexp"
+	"path"
+)
+
+var(
+	listHidden bool
 )
 
 func IsDir(p string) (bool, error) {
@@ -39,7 +44,17 @@ func Stat(p string) (os.FileInfo, error) {
 	return s, nil
 }
 
+func shouldList(p string) bool {
+	if !listHidden && path.Base(p)[0]=='.' {
+		return false
+	}
+	return true
+}
+
 func ls(p string, fold int) error {
+	if !shouldList(p) {
+		return nil
+	}
 	isDir, e := IsDir(p)
 	if e != nil {
 		return e
@@ -86,6 +101,7 @@ func Run(args []string) int {
 	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
 	var foldLvl int
 	flagSet.IntVar(&foldLvl, "r", 1, "List recursively with choosing deepness, can't be negative or zero.")
+	flagSet.BoolVar(&listHidden, "a", false, "List hidden files.")
 	flagSet.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage of %s: %s [files]\n", arg0, arg0)
 		flagSet.PrintDefaults()
@@ -110,6 +126,9 @@ func Run(args []string) int {
 			fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
 		} else {
 			for _, f := range l {
+				if !shouldList(f.Name()) {
+					continue
+				}
 				isDir, _ := IsDir(f.Name())
 
 				fmt.Println(f.Name())
