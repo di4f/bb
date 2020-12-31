@@ -10,7 +10,12 @@ import(
 
 var(
 	listHidden bool
+	args []string
+	arg0 string
+	flagSet *flag.FlagSet
 )
+
+var slashRegexp = regexp.MustCompile("/+")
 
 func IsDir(p string) (bool, error) {
 	finfo, e := os.Stat(p)
@@ -34,7 +39,8 @@ func ReadDir(p string) ([]os.FileInfo, error) {
 	return l, nil
 }
 
-func Stat(p string) (os.FileInfo, error) {
+func
+Stat(p string) (os.FileInfo, error) {
 	f, e := os.Open(p)
 	if e != nil {
 		return nil, e
@@ -44,29 +50,55 @@ func Stat(p string) (os.FileInfo, error) {
 	return s, nil
 }
 
+func findString(slice []string, val string) (int, bool) {
+    for i, v := range slice {
+        if v == val {
+            return i, true
+        }
+    }
+    return -1, false
+}
+
+func
+isHidden(p string) bool {
+	if path.Base(p)[0] == '.' {
+		return true
+	}
+	return false
+}
+
 func shouldList(p string) bool {
-	if !listHidden && path.Base(p)[0]=='.' {
+	if _, found := findString(args, p) ; found {
+		return true
+	}
+	if !listHidden && isHidden(p) { 
 		return false
 	}
 	return true
 }
 
-func ls(p string, fold int) error {
+func
+deleteExceedSlashes(p string) string {
+	p = slashRegexp.ReplaceAllString(p, "/")
+	if p != "/" { // Do not trim if it is root dir.
+		p = strings.TrimRight(p, "/")
+	}
+	return p
+}
+
+func
+ls(p string, fold int) error {
 	if !shouldList(p) {
 		return nil
 	}
+	
+	p = deleteExceedSlashes(p)
+	
 	isDir, e := IsDir(p)
 	if e != nil {
 		return e
 	}
 
-	// Delete repeating slashes.
-	slash := regexp.MustCompile("/+")
-	p = slash.ReplaceAllString(p, "/")
-	if p != "/" { // Do not trim if it is root dir.
-		p = strings.TrimRight(p, "/")
-	}
-	
 
 	if !isDir {
 		fmt.Println(p)
@@ -94,16 +126,16 @@ func ls(p string, fold int) error {
 	return nil
 }
 
-func Run(args []string) int {
+func Run(argv []string) int {
 	status := 0
-	arg0 := args[0]
-	args = args[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
+	arg0 = argv[0]
+	args = argv[1:]
+	flagSet = flag.NewFlagSet(arg0, flag.ExitOnError)
 	var foldLvl int
 	flagSet.IntVar(&foldLvl, "r", 1, "List recursively with choosing deepness, can't be negative or zero.")
 	flagSet.BoolVar(&listHidden, "a", false, "List hidden files.")
 	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Usage of %s: %s [files]\n", arg0, arg0)
+		fmt.Fprintf(os.Stderr, "usage: %s [files]\n", arg0, arg0)
 		flagSet.PrintDefaults()
 	}
 	flagSet.Parse(args)
@@ -136,7 +168,9 @@ func Run(args []string) int {
 					e := ls(f.Name(), foldLvl)
 					if e!=nil {
 						status = 1
-						fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
+						fmt.Fprintf(os.Stderr,
+							"%s: %s\n",
+							arg0, e)
 					}
 				}
 			}
@@ -146,7 +180,7 @@ func Run(args []string) int {
 			e := ls(p, foldLvl)
 			if e != nil {
 				status = 1
-				fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
+				fmt.Fprintf(os.Stderr, "%s: %s\n", arg0, e)
 			}
 			
 		}
