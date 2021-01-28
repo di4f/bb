@@ -7,6 +7,10 @@ import(
 	"fmt"
 )
 
+var(
+	blockSize int
+)
+
 func cat(p string) error {
 	f, e := os.Open(p)
 	if e != nil {
@@ -18,7 +22,7 @@ func cat(p string) error {
 }
 
 func fcat(f *os.File) error {
-	b := make([]byte, 512)
+	b := make([]byte, blockSize)
 	for {
 		n, e := f.Read(b)
 		if n>0 {
@@ -38,8 +42,9 @@ func Run(args []string) int {
 	arg0 := args[0]
 	args = args[1:]
 	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
+	flagSet.IntVar(&blockSize, "bs", 512, "block size")
 	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Usage of %s: %s [files]\n", arg0, arg0)
+		fmt.Fprintf(os.Stderr, "usage: %s [options] [files]\n", arg0)
 		flagSet.PrintDefaults()
 	}
 	flagSet.Parse(args)
