@@ -17,6 +17,7 @@ import(
 	"github.com/k1574/goblin/uniq"
 	"github.com/k1574/goblin/quote"
 	"github.com/k1574/goblin/urlprs"
+	"github.com/k1574/goblin/noext"
 )
 
 func main() {
@@ -40,6 +41,7 @@ func main() {
 		"uniq" : uniq.Run,
 		"quote" : quote.Run,
 		"urlprs" : urlprs.Run,
+		"noext" : noext.Run,
 	}
 
 	if binBase := path.Base(os.Args[0]) ; binBase != "goblin" {
