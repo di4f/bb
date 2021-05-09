@@ -18,6 +18,7 @@ import(
 	"goblin/quote"
 	"goblin/urlprs"
 	"goblin/noext"
+	"goblin/mergelbl"
 )
 
 func main() {
@@ -42,6 +43,7 @@ func main() {
 		"quote" : quote.Run,
 		"urlprs" : urlprs.Run,
 		"noext" : noext.Run,
+		"mergelbl" : mergelbl.Run,
 	}
 
 	if binBase := path.Base(os.Args[0]) ; binBase != "goblin" {
