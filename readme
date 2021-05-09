@@ -1,7 +1,11 @@
-Base utils without exceed options and with additional options I needed in my scripts.
-Lack of a few features is a feature too.
+# goblin
+
+Base utils without exceed (like "cat -v") options
+and with additional options I needed in my scripts.
+
 It is supposed to be as simple as possible.
-Inspired by Plan 9 utils.
-Install:
-	$ go build
-	$ go install
+Inspired by Plan9, Suckless and cat-v software.
+
+Not Posix compatible since it's implemented thousand times.
+Lack of a few features is a feature too.
+
