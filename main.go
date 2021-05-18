@@ -19,6 +19,7 @@ import(
 	"goblin/urlprs"
 	"goblin/noext"
 	"goblin/mergelbl"
+	"goblin/basename"
 )
 
 func main() {
@@ -29,6 +30,7 @@ func main() {
 	
 
 	utilsMap := map[string]  interface{}  {
+		"basename" : basename.Run,
 		"cat": cat.Run,
 		"mkdir" : mkdir.Run,
 		"echo" : echo.Run,
