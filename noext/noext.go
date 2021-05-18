@@ -11,7 +11,7 @@ var(
 	arg0 string
 	args []string
 	dot = '.'
-	slash =  '.'
+	slash =  '/'
 )
 
 func NoExt(p string) string {
