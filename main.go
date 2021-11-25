@@ -20,6 +20,7 @@ import(
 	"goblin/noext"
 	"goblin/mergelbl"
 	"goblin/basename"
+	"goblin/ec"
 )
 
 func main() {
@@ -46,6 +47,7 @@ func main() {
 		"urlprs" : urlprs.Run,
 		"noext" : noext.Run,
 		"mergelbl" : mergelbl.Run,
+		"ec" : ec.Run,
 	}
 
 	if binBase := path.Base(os.Args[0]) ; binBase != "goblin" {
