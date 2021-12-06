@@ -134,10 +134,6 @@ func Run(argv []string) int {
 	var foldLvl int
 	flagSet.IntVar(&foldLvl, "r", 1, "List recursively with choosing deepness, can't be negative or zero.")
 	flagSet.BoolVar(&listHidden, "a", false, "List hidden files.")
-	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "usage: %s [files]\n", arg0, arg0)
-		flagSet.PrintDefaults()
-	}
 	flagSet.Parse(args)
 	args = flagSet.Args()
 
