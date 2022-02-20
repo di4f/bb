@@ -11,7 +11,7 @@ var(
 	blockSize int
 )
 
-func cat(p string) error {
+func Cat(p string) error {
 	f, e := os.Open(p)
 	if e != nil {
 		return e
