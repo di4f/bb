@@ -51,7 +51,7 @@ func Run(args []string) int {
 	args = flagSet.Args()
 	if len(args)>0 {
 		for _, p := range args {
-			e := cat(p)
+			e := Cat(p)
 			if e != nil {
 				fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
 				status = 1
