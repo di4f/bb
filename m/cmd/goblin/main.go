@@ -19,6 +19,7 @@ import(
 	"github.com/k1574/goblin/m/sep/mergelbl"
 	"github.com/k1574/goblin/m/sep/basename"
 	"github.com/k1574/goblin/m/sep/ec"
+	"github.com/k1574/goblin/m/sep/read"
 )
 
 func main() {
@@ -40,6 +41,7 @@ func main() {
 		"noext" : noext.Run,
 		"mergelbl" : mergelbl.Run,
 		"ec" : ec.Run,
+		"read" : read.Run,
 	}
 
 	multitool.Main("goblin", tools)
