@@ -1,0 +1,3 @@
+<$MKINCDIR/config
+CC = cc
+

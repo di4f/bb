@@ -1,5 +1,7 @@
 # goblin
 
+GO Base utils LINked.
+
 Base utils without exceed (like "cat -v") options
 and with additional options I needed in my scripts.
 
