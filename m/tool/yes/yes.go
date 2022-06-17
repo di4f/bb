@@ -6,7 +6,7 @@ import(
 	"fmt"
 	"flag"
 	"strings"
-	"github.com/k1574/goblin/m/gen/input"
+	"github.com/k1574/goblin/m/input"
 )
 var(
 	nArg int

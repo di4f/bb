@@ -5,7 +5,7 @@ import (
 	"os"
 	"sort"
 	"flag"
-	"github.com/k1574/goblin/m/gen/input"
+	"github.com/k1574/goblin/m/input"
 )
 
 func Run(args []string) {
