@@ -11,9 +11,11 @@ import (
 var (
 	flags [lastFlag]bool
 	flagList []int
-	flagMap = map[int] func(os.FileInfo) bool{
+	flagMap = map[int] func(string) bool{
 		fileFlag : IsFile,
 		dirFlag : IsDir,
+		writFlag : IsWritable,
+		readFlag : IsReadable,
 	}
 )
 
@@ -27,32 +29,46 @@ const(
 	lastFlag
 )
 
-func FileInfo(p string) (os.FileInfo, error) {
-	s, err := os.Stat(p)
-	if err != nil {
-		return nil, err
-	}
-
-	return s, nil
-}
-
-func IsFile(fi os.FileInfo) bool {
-	mode := fi.Mode()
-	return mode.IsRegular()
-}
-
-func IsDir(fi os.FileInfo) bool {
-	return fi.IsDir()
-}
-
-func checkFile(p string) bool {
-	fi, err := FileInfo(p)
+func IsFile(p string) bool {
+	st, err := os.Stat(p)
 	if err != nil {
 		return false
 	}
+	mode := st.Mode()
+	return mode.IsRegular()
+}
 
+func IsDir(p string) bool {
+	st, err := os.Stat(p)
+	if err != nil {
+		return false
+	}
+	return st.IsDir()
+}
+
+func IsWritable(p string) bool {
+	f, err := os.OpenFile(p, os.O_WRONLY, 0)
+	if err != nil {
+		return false
+	}
+	defer f.Close()
+
+	return true
+}
+
+func IsReadable(p string) bool {
+	f, err := os.OpenFile(p, os.O_RDONLY, 0)
+	if err != nil {
+		return false
+	}
+	defer f.Close()
+
+	return true
+}
+
+func checkFile(p string) bool {
 	for _, v := range flagList {
-		if !flagMap[v](fi){
+		if !flagMap[v](p){
 			return false
 		}
 	}
@@ -65,12 +81,15 @@ func Run(args []string) {
 	args = args[1:]
 	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
 	flagSet.Usage = func() {
-		flagSet.Usage()
+		fmt.Fprintf(os.Stderr, "usage: %s <options>\n", arg0)
+		flagSet.PrintDefaults()
 		os.Exit(1)
 	}
 
 	flagSet.BoolVar(&flags[fileFlag], "f", false, "is file")
 	flagSet.BoolVar(&flags[dirFlag], "d", false, "is directory")
+	flagSet.BoolVar(&flags[writFlag], "w", false, "is writable")
+	flagSet.BoolVar(&flags[readFlag], "r", false, "is readable")
 
 	flagSet.Parse(args)
 	args = flagSet.Args()
