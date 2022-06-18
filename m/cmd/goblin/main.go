@@ -21,6 +21,7 @@ import(
 	"github.com/k1574/goblin/m/tool/ec"
 	"github.com/k1574/goblin/m/tool/read"
 	"github.com/k1574/goblin/m/tool/wc"
+	"github.com/k1574/goblin/m/tool/ftest"
 )
 
 func main() {
@@ -44,6 +45,7 @@ func main() {
 		"ec" : ec.Run,
 		"read" : read.Run,
 		"wc" : wc.Run,
+		"ftest" : ftest.Run,
 	}
 
 	multitool.Main("goblin", tools)
