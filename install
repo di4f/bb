@@ -1,4 +1,5 @@
 #!/bin/sh
 
-exec mk install
+cd m/cmd/goblin
+exec go install
 
