@@ -22,6 +22,7 @@ import(
 	"github.com/k1574/goblin/m/tool/read"
 	"github.com/k1574/goblin/m/tool/wc"
 	"github.com/k1574/goblin/m/tool/ftest"
+	"github.com/k1574/goblin/m/tool/grange"
 )
 
 func main() {
@@ -46,6 +47,7 @@ func main() {
 		"read" : read.Run,
 		"wc" : wc.Run,
 		"ftest" : ftest.Run,
+		"range" : grange.Run,
 	}
 
 	multitool.Main("goblin", tools)
