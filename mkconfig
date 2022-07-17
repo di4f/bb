@@ -1,3 +1,4 @@
-<$MKINCDIR/config
+MKSHELL = sh
+<$(MKINCDIR)/config
 CC = cc
 
