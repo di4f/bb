@@ -1,5 +1,5 @@
-module github.com/k1574/goblin
+module github.com/surdeus/goblin
 
 go 1.18
 
-require github.com/k1574/gomtool v0.0.0-20220616060224-023d1559d777 // indirect
+require github.com/surdeus/gomtool v0.0.0-20220806023210-bb1d6be89aa1 // indirect
