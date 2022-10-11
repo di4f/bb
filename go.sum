@@ -2,3 +2,5 @@ github.com/k1574/gomtool v0.0.0-20220616060224-023d1559d777 h1:r4Wm40GwE7GNC3VbI
 github.com/k1574/gomtool v0.0.0-20220616060224-023d1559d777/go.mod h1:XT2+xWYiSEE6eX/nBgE6UnfIrBfijwPfv4fNJSVD+SA=
 github.com/surdeus/gomtool v0.0.0-20220806023210-bb1d6be89aa1 h1:eTeqQV207H2ho0QFMxgxI75oT8E69aExmX6f6oltl9Y=
 github.com/surdeus/gomtool v0.0.0-20220806023210-bb1d6be89aa1/go.mod h1:48d4QXOu0MwH0fbqseBInNdS6WiJ0+EzZU9K5sGu4uo=
+github.com/surdeus/gomtool v0.0.0-20221011123848-b7dbc364ea3a h1:fUBhJuFtPNsJCi5//PT+Ni/QMNWzDVig28WK99FTkp0=
+github.com/surdeus/gomtool v0.0.0-20221011123848-b7dbc364ea3a/go.mod h1:48d4QXOu0MwH0fbqseBInNdS6WiJ0+EzZU9K5sGu4uo=

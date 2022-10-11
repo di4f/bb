@@ -1,7 +1,7 @@
 package main
 
 import(
-	"github.com/surdeus/gomtool/src/multitool"
+	mtool "github.com/surdeus/gomtool/src/multitool"
 	"github.com/surdeus/goblin/src/tool/cat"
 	"github.com/surdeus/goblin/src/tool/echo"
 	"github.com/surdeus/goblin/src/tool/mkdir"
@@ -26,29 +26,29 @@ import(
 )
 
 func main() {
-	tools :=  multitool.Tools {
-		"basename" : basename.Run,
-		"cat": cat.Run,
-		"mkdir" : mkdir.Run,
-		"echo" : echo.Run,
-		"true" : gtrue.Run,
-		"false" : gfalse.Run,
-		"sort" : sort.Run,
-		"tac" : tac.Run,
-		"ls" : ls.Run,
-		"yes" : yes.Run,
-		"date" : date.Run,
-		"uniq" : uniq.Run,
-		"quote" : quote.Run,
-		"urlprs" : urlprs.Run,
-		"noext" : noext.Run,
-		"mergelbl" : mergelbl.Run,
-		"ec" : ec.Run,
-		"read" : read.Run,
-		"wc" : wc.Run,
-		"ftest" : ftest.Run,
-		"range" : grange.Run,
+	tools :=  mtool.Tools {
+		"basename" : mtool.Tool{basename.Run, "get base name of file path"},
+		"cat": mtool.Tool{cat.Run, "print file data to the standard output"},
+		"mkdir" : mtool.Tool{mkdir.Run, "make new directory"},
+		"echo" : mtool.Tool{echo.Run, "print strings to the standard output"},
+		"true" : mtool.Tool{gtrue.Run, "exit with true status"},
+		"false" : mtool.Tool{gfalse.Run, "exit with false status"},
+		"sort" : mtool.Tool{sort.Run, "sort strings inputed from standard input"},
+		"tac" : mtool.Tool{tac.Run, "print strings from standard input in reversed order"},
+		"ls" :mtool.Tool{ ls.Run, "list directory content"},
+		"yes" : mtool.Tool{ yes.Run, "print string infinite/exact amount times"},
+		"date" : mtool.Tool{date.Run, "print current date"},
+		"uniq" : mtool.Tool{uniq.Run, "filter repeated strings"},
+		"quote" : mtool.Tool{quote.Run, "quote words containing space characters"},
+		"urlprs" : mtool.Tool{urlprs.Run, "parse URLs"},
+		"noext" : mtool.Tool{noext.Run, "print file path without extension"},
+		"mergelbl" : mtool.Tool{mergelbl.Run, "merge line by line"},
+		"ec" : mtool.Tool{ec.Run, "render escape sequences"},
+		"read" : mtool.Tool{read.Run, "read lines and exit"},
+		"wc" : mtool.Tool{wc.Run, "count words, bytes, runes etc"},
+		"ftest" : mtool.Tool{ftest.Run, "filter files by specified features"},
+		"range" : mtool.Tool{grange.Run, "too lazy"},
 	}
 
-	multitool.Main("goblin", tools)
+	mtool.Main("goblin", tools)
 }
