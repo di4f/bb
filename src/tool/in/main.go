@@ -28,7 +28,10 @@ func Run(args []string) {
 	args = flagSet.Args()
 
 	if len(args) == 0 {
-		flagSet.Usage()
+		//flagSet.Usage()
+		if !not {
+			os.Exit(1)
+		}
 	}
 
 	mp := make(map[string] int)
