@@ -23,6 +23,7 @@ import(
 	"github.com/surdeus/goblin/src/tool/wc"
 	"github.com/surdeus/goblin/src/tool/ftest"
 	"github.com/surdeus/goblin/src/tool/grange"
+	"github.com/surdeus/goblin/src/tool/in"
 )
 
 func main() {
@@ -48,6 +49,7 @@ func main() {
 		"wc" : mtool.Tool{wc.Run, "count words, bytes, runes etc"},
 		"ftest" : mtool.Tool{ftest.Run, "filter files by specified features"},
 		"range" : mtool.Tool{grange.Run, "too lazy"},
+		"in" : mtool.Tool{in.Run, "filter strings from stdin that aren not in arguments"},
 	}
 
 	mtool.Main("goblin", tools)
