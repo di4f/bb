@@ -24,6 +24,7 @@ import(
 	"github.com/surdeus/goblin/src/tool/ftest"
 	"github.com/surdeus/goblin/src/tool/grange"
 	"github.com/surdeus/goblin/src/tool/in"
+	"github.com/surdeus/goblin/src/tool/useprog"
 )
 
 func main() {
@@ -50,6 +51,7 @@ func main() {
 		"ftest" : mtool.Tool{ftest.Run, "filter files by specified features"},
 		"range" : mtool.Tool{grange.Run, "too lazy"},
 		"in" : mtool.Tool{in.Run, "filter strings from stdin that aren not in arguments"},
+		"useprog" : mtool.Tool{useprog.Run, "print the name of the first existing program in arg list"},
 	}
 
 	mtool.Main("goblin", tools)
