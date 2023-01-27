@@ -11,3 +11,9 @@ Inspired by Plan9, Suckless and cat-v software.
 Not Posix compatible since it's implemented thousand times.
 Lack of a few features is a feature too.
 
+Since Golang is so good at static files it makes sense to
+put many programs into one, so now it is gonna include many
+suckless stuff, including:
+
+	mk
+
