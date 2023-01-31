@@ -83,6 +83,8 @@ func Run(args []string) {
 	outputMode := ""
 	header := false
 
+	argv0 := args[0]
+
 	var i int
 	for i = 1; i < len(args); i++ {
 		// Stop on explicit end of args or first arg not prefixed with "-"
@@ -177,6 +179,7 @@ func Run(args []string) {
 	// Any remaining args are program and input files
 	args = args[i:]
 
+	fmt.Printf("args: %q\n", args)
 	var src []byte
 	var stdinBytes []byte // used if there's a parse error
 	if len(progFiles) > 0 {
@@ -259,7 +262,7 @@ func Run(args []string) {
 	}
 
 	config := &interp.Config{
-		Argv0: filepath.Base(args[0]),
+		Argv0: filepath.Base(argv0),
 		Args:  expandWildcardsOnWindows(args),
 		Vars: []string{
 			"FS", fieldSep,
