@@ -7,8 +7,8 @@ import (
 	"io"
 	"strings"
 
-	"github.com/benhoyt/goawk/internal/ast"
-	"github.com/benhoyt/goawk/lexer"
+	"github.com/surdeus/goblin/src/tool/awk/internal/ast"
+	"github.com/surdeus/goblin/src/tool/awk/lexer"
 )
 
 // Disassemble writes a human-readable form of the program's virtual machine

@@ -7,8 +7,8 @@ import (
 	"reflect"
 	"sort"
 
-	"github.com/benhoyt/goawk/internal/ast"
-	. "github.com/benhoyt/goawk/lexer"
+	"github.com/surdeus/goblin/src/tool/awk/internal/ast"
+	. "github.com/surdeus/goblin/src/tool/awk/lexer"
 )
 
 type varType int

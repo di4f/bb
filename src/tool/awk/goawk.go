@@ -38,9 +38,9 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/benhoyt/goawk/interp"
-	"github.com/benhoyt/goawk/lexer"
-	"github.com/benhoyt/goawk/parser"
+	"github.com/surdeus/goblin/src/tool/awk/interp"
+	"github.com/surdeus/goblin/src/tool/awk/lexer"
+	"github.com/surdeus/goblin/src/tool/awk/parser"
 )
 
 const (

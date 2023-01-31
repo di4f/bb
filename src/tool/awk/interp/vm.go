@@ -10,15 +10,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/benhoyt/goawk/internal/ast"
-	"github.com/benhoyt/goawk/internal/compiler"
-	"github.com/benhoyt/goawk/lexer"
+	"github.com/surdeus/goblin/src/tool/awk/internal/ast"
+	"github.com/surdeus/goblin/src/tool/awk/internal/compiler"
+	"github.com/surdeus/goblin/src/tool/awk/lexer"
 )
 
 // Execute a block of virtual machine instructions.
 //
 // A big switch seems to be the best way of doing this for now. I also tried
-// an array of functions (https://github.com/benhoyt/goawk/commit/8e04b069b621ff9b9456de57a35ff2fe335cf201)
+// an array of functions (https://github.com/surdeus/goblin/src/tool/awk/commit/8e04b069b621ff9b9456de57a35ff2fe335cf201)
 // and it was ever so slightly faster, but the code was harder to work with
 // and it won't be improved when Go gets faster switches via jump tables
 // (https://go-review.googlesource.com/c/go/+/357330/).
@@ -1205,7 +1205,7 @@ func (p *interp) getline(redirect lexer.Token) (float64, string, error) {
 		if err != nil {
 			if _, ok := err.(*os.PathError); ok {
 				// File not found is not a hard error, getline just returns -1.
-				// See: https://github.com/benhoyt/goawk/issues/41
+				// See: https://github.com/surdeus/goblin/src/tool/awk/issues/41
 				return -1, "", nil
 			}
 			return 0, "", err

@@ -6,8 +6,8 @@ import (
 	"math"
 	"regexp"
 
-	"github.com/benhoyt/goawk/internal/ast"
-	"github.com/benhoyt/goawk/lexer"
+	"github.com/surdeus/goblin/src/tool/awk/internal/ast"
+	"github.com/surdeus/goblin/src/tool/awk/lexer"
 )
 
 // Program holds an entire compiled program.

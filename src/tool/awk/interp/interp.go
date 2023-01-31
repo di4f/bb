@@ -28,9 +28,9 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/benhoyt/goawk/internal/ast"
-	"github.com/benhoyt/goawk/internal/compiler"
-	"github.com/benhoyt/goawk/parser"
+	"github.com/surdeus/goblin/src/tool/awk/internal/ast"
+	"github.com/surdeus/goblin/src/tool/awk/internal/compiler"
+	"github.com/surdeus/goblin/src/tool/awk/parser"
 )
 
 var (
@@ -250,7 +250,7 @@ type Config struct {
 	// or "tsv" in Vars or in the BEGIN block (those override this setting).
 	//
 	// For further documentation about GoAWK's CSV support, see the full docs:
-	// https://github.com/benhoyt/goawk/blob/master/csv.md
+	// https://github.com/surdeus/goblin/src/tool/awk/blob/master/csv.md
 	InputMode IOMode
 
 	// Additional options if InputMode is CSVMode or TSVMode. The zero value

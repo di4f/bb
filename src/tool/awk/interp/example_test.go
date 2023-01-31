@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/benhoyt/goawk/interp"
-	"github.com/benhoyt/goawk/parser"
+	"github.com/surdeus/goblin/src/tool/awk/interp"
+	"github.com/surdeus/goblin/src/tool/awk/parser"
 )
 
 func Example() {
