@@ -1,0 +1,1 @@
+parse error at 8:1: global var "foo" can't also be a function

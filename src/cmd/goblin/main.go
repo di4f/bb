@@ -27,6 +27,7 @@ import(
 	"github.com/surdeus/goblin/src/tool/useprog"
 	"github.com/surdeus/goblin/src/tool/path"
 	"github.com/surdeus/goblin/src/tool/mk"
+	//"github.com/surdeus/goblin/src/tool/awk"
 )
 
 func main() {
@@ -55,7 +56,8 @@ func main() {
 		"in" : mtool.Tool{in.Run, "filter strings from stdin that aren not in arguments"},
 		"useprog" : mtool.Tool{useprog.Run, "print the name of the first existing program in arg list"},
 		"path" : mtool.Tool{path.Run, "print cross platform path based on cmd arguments"},
-		"mk" : mtool.Tool{mk.Run, "file dependency system"},
+		"mk" : mtool.Tool{mk.Run, "file dependency system, simpler make"},
+		//"awk" : mtool.Tool{awk.Run, "simple scripting language for working with string templates"},
 	}
 
 	mtool.Main("goblin", tools)

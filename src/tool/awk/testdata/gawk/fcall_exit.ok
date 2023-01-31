@@ -1,0 +1,1 @@
+true(1, crash()) => do not crash properly.

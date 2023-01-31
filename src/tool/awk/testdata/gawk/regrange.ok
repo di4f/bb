@@ -1,0 +1,5 @@
+"." ~ /[--\/]/ --> 1
+"a" ~ /[]-c]/ --> 1
+"c" ~ /[[a-d]/ --> 1
+"\" ~ /[\[-\]]/ --> 1
+invalid regex "[a-[.e.]]": error parsing regexp: invalid character class range: `a-[`
