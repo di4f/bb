@@ -179,7 +179,6 @@ func Run(args []string) {
 	// Any remaining args are program and input files
 	args = args[i:]
 
-	fmt.Printf("args: %q\n", args)
 	var src []byte
 	var stdinBytes []byte // used if there's a parse error
 	if len(progFiles) > 0 {
