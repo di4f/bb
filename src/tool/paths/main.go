@@ -1,19 +1,19 @@
 package paths
 
 import (
-	"path/filepath"
 	"fmt"
 	"flag"
 	"bufio"
 	"os"
+	"github.com/surdeus/goblin/src/pathx"
 )
 
 var (
 )
 
 func handlePath(p string) {
-	fin := filepath.FromSlash(p)
-	fmt.Println(fin)
+	pth := pathx.From(p)
+	fmt.Println(pth.Real())
 }
 
 func Run(args []string) {
