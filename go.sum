@@ -4,3 +4,5 @@ github.com/surdeus/gomtool v0.0.0-20220806023210-bb1d6be89aa1 h1:eTeqQV207H2ho0Q
 github.com/surdeus/gomtool v0.0.0-20220806023210-bb1d6be89aa1/go.mod h1:48d4QXOu0MwH0fbqseBInNdS6WiJ0+EzZU9K5sGu4uo=
 github.com/surdeus/gomtool v0.0.0-20221011123848-b7dbc364ea3a h1:fUBhJuFtPNsJCi5//PT+Ni/QMNWzDVig28WK99FTkp0=
 github.com/surdeus/gomtool v0.0.0-20221011123848-b7dbc364ea3a/go.mod h1:48d4QXOu0MwH0fbqseBInNdS6WiJ0+EzZU9K5sGu4uo=
+github.com/surdeus/gomtool v0.0.0-20221123071619-d67de6873631 h1:dSnG4J2jusYRVnRRmuiqzSkl4vRMIJOQyI04UfKIwIM=
+github.com/surdeus/gomtool v0.0.0-20221123071619-d67de6873631/go.mod h1:48d4QXOu0MwH0fbqseBInNdS6WiJ0+EzZU9K5sGu4uo=
