@@ -26,7 +26,7 @@ build-sh :VQ:
 		fi
 		command cd $pwd
 	done
-clean:V:
+clean:VQ:
 	pwd=`pwd`
 	names=`command cd src/cmd && goblin ls && command cd $pwd`
 	for name in $names ; do

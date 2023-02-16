@@ -326,9 +326,11 @@ func Run(args []string) {
 	arg0 := args[0]
 	args = args[1:]
 
-	if mkincdir := os.Getenv("MKINCDIR") ; mkincdir == "" {
+	if mkincdir := os.Getenv("MKINCDIR") ;
+			mkincdir == "" {
 		homeDir, _ := os.UserHomeDir()
 		os.Setenv("MKINCDIR", homeDir + "/app/goblin/mk/inc" )
+		fmt.Println("shit:", os.Getenv("MKINCDIR"))
 	}
 
 	flags := flag.NewFlagSet(arg0, flag.ExitOnError)
