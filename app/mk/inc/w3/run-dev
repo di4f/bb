@@ -1,0 +1,14 @@
+run-dev:V:
+	while true ; do
+		goblin echo -n '> '
+		input=`goblin read`
+		case $input in
+		exit)
+			exit
+		;;
+		esac
+		goblin ls -r 100 $WATCH_FILES \
+			| entr -d -r sh -c \
+			'mk && ./exe/w3site' \
+			|| pkill w3site && ./exe/w3site
+	done

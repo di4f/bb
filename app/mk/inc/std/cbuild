@@ -1,0 +1,15 @@
+OFILES = ${CFILES:%.c=%.o}
+TARG = exe/$PROGNAME
+CFLAGS = $CPPFLAGS $DEFS $INCS $CFLAGS
+all :V: $TARG
+strip :V: $TARG.strip
+$TARG.strip : $TARG
+	cp -f $TARG $target
+	$STRIP $target
+$TARG : $OFILES
+	mkdir -p exe
+	$LD -o $target $LDFLAGS $OFILES $AFILES $LIBS
+%.o : %.c $HFILES
+	$CC -c -o $target $CFLAGS $stem.c
+run :V: $TARG
+	exec ./$TARG $MKFLAGS

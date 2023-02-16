@@ -1,0 +1,12 @@
+TARG = shr/obj/$OBJNAME.a
+CFLAGS = $DEFS $INCS $CPPFLAGS
+OFILES = ${CFILES:%.c=%.o}
+all:V: $TARG
+$TARG : $OFILES
+	mkdir -p shr/obj
+	$AR $ARFLAGS $TARG $OFILES	
+%.o : %.c
+	$CC -c -o $target $CFLAGS $stem.c
+clean:V:
+	rm -f $TARG $OFILES
+<$MKINCDIR/std/install

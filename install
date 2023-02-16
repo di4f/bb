@@ -1,5 +1,0 @@
-#!/bin/sh
-
-cd m/cmd/goblin
-exec go install
-

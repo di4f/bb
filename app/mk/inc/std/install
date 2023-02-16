@@ -1,0 +1,30 @@
+install:V: install-$MKSHELL
+install-sh:VQ: build
+	if test -d shr ; then
+		echo Installing shared files...
+		cp -rf shr $HOME/shr/..
+		echo Done installing shared files
+	fi
+	if test -d app ; then
+		echo Installing application files...
+		mkdir -p $APPDIR/$PROGNAME && cp -rf app/* $APPDIR/$PROGNAME/
+		echo Done installing application files
+	fi
+	if test -d exe ; then
+		echo Installing executables...
+		cp -rf exe $EXEDIR/..
+		files=`goblin basename $(ls exe)`
+		for i in $files ; do
+			chmod 0755 $EXEDIR/$i
+		done
+		echo Done installing executables
+	 fi
+install-rc:V: build
+	if(test -d shr) cp -rf shr $SHRDIR/..
+	if(test -d app){ mkdir -p $APPDIR/$PROGNAME && cp -rf app/* $APPDIR/$PROGNAME/ }
+	if(test -d exe) {
+		cp -rf exe $EXEDIR/..
+		files = `{goblin basename `{ls exe} }
+		chmod 0755 $EXEDIR/^$files 
+	}
+

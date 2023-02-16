@@ -1,0 +1,7 @@
+TARG = exe
+exe:
+	mkdir -p $target
+all:VQ:
+	echo -n
+<$MKINCDIR/std/install
+

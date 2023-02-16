@@ -1,0 +1,22 @@
+# File to build programs with Yacc files.
+INSTALLDIRS = $APPDIR $EXEDIR $SHRDIR
+OFILES = ${CFILES:%.c=%.o}
+YOFILES = ${YCFILES:%.c=%.o}
+TARG = exe/$PROGNAME
+CFLAGS = $CPPFLAGS $DEFS $INCS $CFLAGS  
+all :V: $TARG
+strip :V: $TARG
+	$STRIP $TARG
+$TARG : $OFILES $YOFILES
+	mkdir -p exe
+	$LD -o $target $LDFLAGS $OFILES $YOFILES $AFILES $LIBS
+%.o : %.c 
+	$CC -c -o $target $CFLAGS $stem.c
+$CFILES $YCFILES :N: $HFILES $YHFILES
+$HFILES :N:
+$YHFILES $YCFILES : $YFILES
+	$YACC -d $YFILES
+$YFILES :N:
+clean:
+	rm -f $TARG $OFILES $YOFILES $YHFILES $YCFILES
+<$MKINCDIR/std/install

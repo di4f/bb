@@ -1,0 +1,14 @@
+% :V: %-$MKSHELL 
+%-sh :QV:
+	pwd=`pwd`
+	export pwd
+	for d in $DIRS ; do
+		echo "[ cd $d ; mk $stem]"
+		cd "$d" ; mk $MKFLAGS $stem ; cd "$pwd"
+	done
+%-rc :QV:
+	pwd = `{pwd}
+	for(d in $DIRS){
+		echo  [ cd $d ';' mk $stem]
+		{ builtin cd $d ; mk $MKFLAGS $stem ; builtin cd $pwd}
+	}
