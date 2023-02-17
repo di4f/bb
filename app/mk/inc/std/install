@@ -12,7 +12,8 @@ install-sh:VQ: build
 	fi
 	if test -d exe ; then
 		echo Installing executables...
-		cp -rf exe $EXEDIR/..
+		mkdir -p $EXEDIR
+		cp -rf exe/* $EXEDIR/
 		files=`goblin basename $(ls exe)`
 		for i in $files ; do
 			chmod 0755 $EXEDIR/$i

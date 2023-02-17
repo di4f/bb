@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 	"sync"
+	"github.com/surdeus/goblin/src/pathx"
 )
 
 // True if messages should be printed without fancy colors.
@@ -344,7 +345,7 @@ func Run(args []string) {
 	flags.BoolVar(&quiet, "q", false, "don't print recipes before executing them")
 	flags.Parse(args)
 
-	mkfile, err := os.Open(mkfilepath)
+	mkfile, err := os.Open(pathx.From(mkfilepath).Real())
 	if err != nil {
 		mkError("no mkfile found")
 	}

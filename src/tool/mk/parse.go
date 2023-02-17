@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"github.com/surdeus/goblin/src/pathx"
 )
 
 type parser struct {
@@ -164,7 +165,7 @@ func parseRedirInclude(p *parser, t token) parserStateFun {
 		for i := range p.tokenbuf {
 			filename += expand(p.tokenbuf[i].val, p.rules.vars, true)[0]
 		}
-		file, err := os.Open(filename)
+		file, err := os.Open(pathx.From(filename).Real())
 		if err != nil {
 			p.basicWarnAtToken(fmt.Sprintf("cannot open %s", filename), p.tokenbuf[0])
 			//p.basicErrorAtToken(fmt.Sprintf("cannot open %s", filename), p.tokenbuf[0])
