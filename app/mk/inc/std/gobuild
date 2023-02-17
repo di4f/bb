@@ -1,9 +1,4 @@
 all :V: build
-strip :V: $STRIPTARG
-%.strip : %
-	cp -f $prereq $target
-	$STRIP $target
-
 build :VQ: build-$MKSHELL
 build-sh :VQ:
 	mkdir -p exe
