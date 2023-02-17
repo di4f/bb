@@ -12,6 +12,7 @@ import (
 type Value string
 type Path struct {
 	Values []Value
+	IsAbs bool
 }
 
 func (p Path) Append(values ...string) Path {
@@ -22,7 +23,15 @@ func (p Path) Append(values ...string) Path {
 }
 
 func From(p string) Path {
+	ret := Path{}
+	if len(p) == 0 {
+		return ret
+	}
+
 	p = path.Clean(p)
+	if p[0] == '/' {
+		ret.IsAbs = true
+	}
 	p, _ = strings.CutSuffix(p, "/")
 	svalues := strings.Split(p, "/")
 
@@ -30,10 +39,9 @@ func From(p string) Path {
 	for i, s := range svalues {
 		values[i] = Value(s)
 	}
+	ret.Values = values
 
-	return Path{
-		Values: values,
-	}
+	return ret
 }
 
 func (v Value) IsValid() bool {
@@ -45,12 +53,16 @@ func (v Value) Err() error {
 }
 
 func (p Path) StringValues() []string {
-	values := make([]string, len(p.Values))
-	for i, v := range p.Values {
-		values[i] = string(v)
+	ret := []string{}
+	if p.IsAbs {
+		ret = append(ret, "/")
 	}
 
-	return values
+	for _, v := range p.Values {
+		ret = append(ret, string(v))
+	}
+
+	return ret
 }
 
 func (p Path) Real() string {

@@ -163,7 +163,11 @@ func parseRedirInclude(p *parser, t token) parserStateFun {
 		filename := ""
 		//fmt.Printf("'%v'\n", p.tokenbuf)
 		for i := range p.tokenbuf {
-			filename += expand(p.tokenbuf[i].val, p.rules.vars, true)[0]
+			filename += expand(
+				p.tokenbuf[i].val,
+				p.rules.vars,
+				true,
+			)[0]
 		}
 		file, err := os.Open(pathx.From(filename).Real())
 		if err != nil {
