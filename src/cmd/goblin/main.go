@@ -29,6 +29,7 @@ import(
 	"github.com/surdeus/goblin/src/tool/mk"
 	"github.com/surdeus/goblin/src/tool/awk"
 	"github.com/surdeus/goblin/src/tool/paths"
+	"github.com/surdeus/goblin/src/tool/whoami"
 )
 
 func main() {
@@ -62,6 +63,10 @@ func main() {
 		"paths" : mtool.Tool{
 			paths.Run,
 			"convert UNIX slash separated paths into the OS compatible ones",
+		},
+		"whoami": mtool.Tool{
+			whoami.Run,
+			"print current user name",
 		},
 	}
 
