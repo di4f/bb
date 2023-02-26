@@ -2,8 +2,8 @@
 
 wd=`pwd`
 
-cd src/cmd/goblin && go install && cd $wd
+cd $wd/src/cmd/goblin && go install && cd $wd
 
 mkdir -p $HOME/app/goblin
-cp -rf app/* $HOME/app/goblin
+cp -rf $wd/app/* $HOME/app/goblin
 
