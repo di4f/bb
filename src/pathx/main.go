@@ -4,15 +4,15 @@ package pathx
 // paths.
 
 import (
-	fp "path/filepath"
 	"path"
+	fp "path/filepath"
 	"strings"
 )
 
 type Value string
 type Path struct {
 	Values []Value
-	IsAbs bool
+	IsAbs  bool
 }
 
 func (p Path) Append(values ...string) Path {
@@ -28,10 +28,10 @@ func From(p string) Path {
 		return ret
 	}
 
-	p = path.Clean(p)
-	if p[0] == '/' {
-		ret.IsAbs = true
-	}
+	/*	p = path.Clean(p)
+		if p[0] == '/' {
+			ret.IsAbs = true
+		} */
 	p, _ = strings.CutSuffix(p, "/")
 	svalues := strings.Split(p, "/")
 
@@ -42,6 +42,10 @@ func From(p string) Path {
 	ret.Values = values
 
 	return ret
+}
+
+func FromReal(p string) Path {
+	return From(fp.ToSlash(p))
 }
 
 func (v Value) IsValid() bool {
@@ -66,11 +70,17 @@ func (p Path) StringValues() []string {
 }
 
 func (p Path) Real() string {
-	return fp.Join(p.StringValues()...)
+	return strings.Join(p.StringValues(), string(fp.Separator))
 }
 
 func (p Path) String() string {
-	return path.Join(p.StringValues()...)
+	ret := ""
+	if p.IsAbs {
+		ret = "/"
+	}
+
+	ret += path.Join(p.StringValues()...)
+	return ret
 }
 
 func (p Path) IsValid() bool {
@@ -92,4 +102,3 @@ func (p Path) Err() error {
 
 	return nil
 }
-

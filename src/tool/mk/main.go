@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 	"sync"
+
 	"github.com/surdeus/goblin/src/pathx"
 )
 
@@ -93,7 +94,6 @@ const (
 )
 
 // Build a node's prereqs. Block until completed.
-//
 func mkNodePrereqs(g *graph, u *node, e *edge, prereqs []*node, dryrun bool,
 	required bool) nodeStatus {
 	prereqstat := make(chan nodeStatus)
@@ -131,11 +131,11 @@ func mkNodePrereqs(g *graph, u *node, e *edge, prereqs []*node, dryrun bool,
 // concurrently.
 //
 // Args:
-//  g: Graph in which the node lives.
-//  u: Node to (possibly) build.
-//  dryrun: Don't actually build anything, just pretend.
-//  required: Avoid building this node, unless its prereqs are out of date.
 //
+//	g: Graph in which the node lives.
+//	u: Node to (possibly) build.
+//	dryrun: Don't actually build anything, just pretend.
+//	required: Avoid building this node, unless its prereqs are out of date.
 func mkNode(g *graph, u *node, dryrun bool, required bool) {
 	// try to claim on this node
 	u.mutex.Lock()
@@ -327,10 +327,10 @@ func Run(args []string) {
 	arg0 := args[0]
 	args = args[1:]
 
-	if mkincdir := os.Getenv("MKINCDIR") ;
-			mkincdir == "" {
+	if mkincdir := os.Getenv("MKINCDIR"); mkincdir == "" {
 		homeDir, _ := os.UserHomeDir()
-		os.Setenv("MKINCDIR", homeDir + "/app/goblin/mk/inc" )
+		homeDir = pathx.FromReal(homeDir).String()
+		os.Setenv("MKINCDIR", homeDir+"/app/goblin/mk/inc")
 	}
 
 	flags := flag.NewFlagSet(arg0, flag.ExitOnError)

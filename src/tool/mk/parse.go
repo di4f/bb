@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+
 	"github.com/surdeus/goblin/src/pathx"
 )
 
@@ -169,9 +170,11 @@ func parseRedirInclude(p *parser, t token) parserStateFun {
 				true,
 			)[0]
 		}
-		file, err := os.Open(pathx.From(filename).Real())
+		pths := pathx.From(filename)
+		file, err := os.Open(pths.Real())
 		if err != nil {
 			p.basicWarnAtToken(fmt.Sprintf("cannot open %s", filename), p.tokenbuf[0])
+			//fmt.Printf("%q %q %q\n", pths.Values, pths.Real(), pths.String())
 			//p.basicErrorAtToken(fmt.Sprintf("cannot open %s", filename), p.tokenbuf[0])
 		}
 		input, _ := io.ReadAll(file)

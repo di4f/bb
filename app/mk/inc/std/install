@@ -7,6 +7,7 @@ install-sh:VQ: build
 	fi
 	if test -d app ; then
 		echo Installing application files...
+		echo "'$APPDIR'"
 		mkdir -p $APPDIR/$PKG_NAME && cp -rf app/* $APPDIR/$PKG_NAME/
 		echo Done installing application files
 	fi
