@@ -8,12 +8,13 @@ install-sh:VQ: build
 	if test -d app ; then
 		echo Installing application files...
 		echo "'$APPDIR'"
-		mkdir -p $APPDIR/$PKG_NAME && cp -rf app/* $APPDIR/$PKG_NAME/
+		echo `goblin paths app/* $APPDIR/$PKG_NAME/`
+		#goblin mkdir -p `goblin path $APPDIR/$PKG_NAME` && cp -rf `goblin paths app/* $APPDIR/$PKG_NAME/`
 		echo Done installing application files
 	fi
 	if test -d exe ; then
 		echo Installing executables...
-		mkdir -p $EXEDIR
+		goblin mkdir -p $EXEDIR
 		cp -rf exe/* $EXEDIR/
 		files=`goblin basename $(ls exe)`
 		for i in $files ; do

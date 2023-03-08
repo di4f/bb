@@ -1,30 +1,32 @@
 package paths
 
 import (
-	"fmt"
-	"flag"
 	"bufio"
-	"os"
-	"github.com/surdeus/goblin/src/pathx"
-	"path"
-	"log"
 	"errors"
+	"flag"
+	"fmt"
+	"log"
+	"os"
+	"path"
+
+	"github.com/surdeus/goblin/src/pathx"
 )
 
 var (
-	part string
-	handlers = map[string] func(string) string {
-		"base" : path.Base,
-		"ext" : path.Ext,
-		"dir" : path.Dir,
-		"all" : func(v string) string {return v},
+	part     string
+	handlers = map[string]func(string) string{
+		"base": path.Base,
+		"ext":  path.Ext,
+		"dir":  path.Dir,
+		"all":  func(v string) string { return v },
+		"fr": func(v string) string {
+			return pathx.FromReal(v).String()
+		},
 	}
-	handler func(string) string
-	r bool
+	handler   func(string) string
+	r         bool
 	noPartErr = errors.New("no such part")
 )
-
-
 
 func handlePath(p string) {
 	if handler != nil {
@@ -63,4 +65,3 @@ func Run(args []string) {
 		handlePath(rd.Text())
 	}
 }
-

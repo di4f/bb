@@ -4,6 +4,7 @@ package pathx
 // paths.
 
 import (
+	//"fmt"
 	"path"
 	fp "path/filepath"
 	"strings"
@@ -28,10 +29,10 @@ func From(p string) Path {
 		return ret
 	}
 
-	/*	p = path.Clean(p)
-		if p[0] == '/' {
-			ret.IsAbs = true
-		} */
+	p = path.Clean(p)
+	if p[0] == '/' {
+		ret.IsAbs = true
+	}
 	p, _ = strings.CutSuffix(p, "/")
 	svalues := strings.Split(p, "/")
 
@@ -45,7 +46,9 @@ func From(p string) Path {
 }
 
 func FromReal(p string) Path {
-	return From(fp.ToSlash(p))
+	ret := From(fp.ToSlash(p))
+	//fmt.Println("from real:", ret)
+	return ret
 }
 
 func (v Value) IsValid() bool {
