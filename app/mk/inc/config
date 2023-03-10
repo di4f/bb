@@ -3,7 +3,7 @@
 MKINCDIR = $(MKINCDIR)
 
 EXEDIR = $(HOME)/exe
-APPDIR = $(HOME)/app
+APPDIR = `goblin paths -fr $HOME/app`
 SHRDIR = $(HOME)/shr
 INCDIR = $SHRDIR/inc
 OBJDIR = $SHRDIR/obj

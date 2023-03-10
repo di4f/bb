@@ -7,6 +7,7 @@ install-sh:VQ: build
 	fi
 	if test -d app ; then
 		echo Installing application files...
+		echo "'$HOME'"
 		echo "'$APPDIR'"
 		echo `goblin paths app/* $APPDIR/$PKG_NAME/`
 		#goblin mkdir -p `goblin path $APPDIR/$PKG_NAME` && cp -rf `goblin paths app/* $APPDIR/$PKG_NAME/`

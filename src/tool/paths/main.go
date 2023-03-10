@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"strings"
 
 	"github.com/surdeus/goblin/src/pathx"
 )
@@ -19,26 +20,34 @@ var (
 		"ext":  path.Ext,
 		"dir":  path.Dir,
 		"all":  func(v string) string { return v },
-		"fr": func(v string) string {
-			return pathx.FromReal(v).String()
-		},
 	}
 	handler   func(string) string
 	r         bool
+	fromReal  bool
+	ec        bool
 	noPartErr = errors.New("no such part")
 )
 
 func handlePath(p string) {
+	if fromReal {
+		p = pathx.FromReal(p).String()
+	}
 	if handler != nil {
 		p = handler(p)
 	}
 
+	var toPrint string
 	if r {
-		pth := pathx.From(p)
-		fmt.Println(pth.Real())
+		toPrint = pathx.From(p).Real()
 	} else {
-		fmt.Println(p)
+		toPrint = p
 	}
+
+	if ec {
+		toPrint = strings.ReplaceAll(toPrint, "\\", "\\\\")
+	}
+
+	fmt.Println(toPrint)
 }
 
 func Run(args []string) {
@@ -47,6 +56,8 @@ func Run(args []string) {
 	flags := flag.NewFlagSet(arg0, flag.ExitOnError)
 	flags.StringVar(&part, "p", "all", "part of path you want to print")
 	flags.BoolVar(&r, "r", false, "print real OS dependent paths")
+	flags.BoolVar(&fromReal, "fr", false, "take input paths as real ones")
+	flags.BoolVar(&ec, "ec", false, "escape characters (mostly for '\\' char in Git bash")
 
 	flags.Parse(args)
 	args = flags.Args()
