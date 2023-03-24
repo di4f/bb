@@ -3,9 +3,9 @@ package tac
 import(
 	"os"
 	"io"
-	"flag"
 	"fmt"
 	"bufio"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 func reverse(a []string) chan string {
@@ -47,21 +47,14 @@ func ftac(f *os.File) error {
 	return nil
 }
 
-func Run(args []string) {	
-	arg0 := args[0]
-	args = args[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
-	flagSet.Usage = func () {
-		fmt.Fprintf(os.Stderr, "Usage of %s: %s [files]\n", arg0, arg0)
-		flagSet.PrintDefaults()
-	}
-	flagSet.Parse(args)
-	args = flagSet.Args()
+func Run(flagSet *mtool.Flags) {	
+	flagSet.Parse()
+	args := flagSet.Args()
 	if len(args)>0 {
 		for _, p := range args {
 			e := tac(p)
 			if e != nil {
-				fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
+				fmt.Fprintf(os.Stderr, "%s.\n", e)
 			}
 		}
 	} else {

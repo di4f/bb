@@ -6,6 +6,7 @@ import(
 	"os"
 	"bufio"
 	"log"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 const(
@@ -31,7 +32,7 @@ handleEscChar(rd *bufio.Reader) error {
 }
 
 func
-Run(args []string) {
+Run(flags *mtool.Flags) {
 	rd := bufio.NewReader(os.Stdin)
 	for {
 		r, _, e := rd.ReadRune()

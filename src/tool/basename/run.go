@@ -3,9 +3,8 @@ package basename
 
 import(
 	"fmt"
-	"flag"
-	"os"
 	"path"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 var(
@@ -18,16 +17,9 @@ func Base(p string) string {
 	return path.Base(p)
 }
 
-func Run(argv []string) {
-	arg0 = argv[0]
-	args = argv[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
-	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "usage: %s [files]\n", arg0, arg0)
-		flagSet.PrintDefaults()
-	}
-	flagSet.Parse(args)
-	args = flagSet.Args()
+func Run(flags *mtool.Flags) {
+	flags.Parse()
+	args := flags.Args()
 
 	lasti := len(args) - 1
 	for i, v := range args {

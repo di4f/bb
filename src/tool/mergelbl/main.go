@@ -4,11 +4,11 @@ import(
 	"os"
 	"fmt"
 	"bufio"
-	"flag"
 	"log"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
-func Run(args []string) {
+func Run(flagSet *mtool.Flags) {
 	var(
 		e error
 		buf string
@@ -16,15 +16,8 @@ func Run(args []string) {
 	rsep := '\n'
 	wsep := "\n"
 	//del := ""
-	arg0 := args[0]
-	args = args[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
-	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "usage: %s <file1> <file2> .. [fileN]\n", arg0)
-		flagSet.PrintDefaults()
-	}
-	flagSet.Parse(args)
-	args = flagSet.Args()
+	flagSet.Parse()
+	args := flagSet.Args()
 
 	files := make([]*os.File, len(args))
 	for i, v := range args {

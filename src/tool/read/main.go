@@ -3,26 +3,18 @@ package read
 import(
 	"os"
 	"bufio"
-	"flag"
 	"fmt"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 var(
 	nLines int
 )
 
-func Run(args []string) {	
-	arg0 := args[0]
-	args = args[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
+func Run(flagSet *mtool.Flags) {	
 	flagSet.IntVar(&nLines, "n", 1, "amount of lines")
-	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "usage: %s [options] [files]\n", arg0)
-		flagSet.PrintDefaults()
-		os.Exit(1)
-	}
-	flagSet.Parse(args)
-	args = flagSet.Args()
+	flagSet.Parse()
+	//args := flagSet.Args()
 
 	if nLines <= 0 {
 		flagSet.Usage()

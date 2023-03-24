@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net"
 	"net/url"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 var nilStr = "_"
@@ -16,10 +17,13 @@ func printNil(s string) {
 		fmt.Println(nilStr)
 	}
 }
-func Run(args []string) {
+func Run(flags *mtool.Flags) {
 	nilStr = "_"
 
-	s := args[1]
+	flags.Parse()
+	args := flags.Args()
+	if len(args) < 1 { flags.Usage() }
+	s := args[0]
 
 	u, err := url.Parse(s)
 	if err != nil {

@@ -3,7 +3,7 @@ package echo
 
 import (
 	"fmt"
-	"flag"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 var(
@@ -11,13 +11,15 @@ var(
 	eol = "\n"
 )
 
-func Run(args []string) {
+func Run(flagSet *mtool.Flags) {
 	var nflag bool
-	flagSet := flag.NewFlagSet(args[0], flag.ExitOnError)
+	
 	flagSet.BoolVar(&nflag, "n", false, "Do not print new line character.")
 	flagSet.StringVar(&del, "d", " ", "Delimiter of arguments")
-	flagSet.Parse(args[1:])
-	args = flagSet.Args()
+	
+	flagSet.Parse()
+	args := flagSet.Args()
+	
 	l := len(args) - 1
 	for i, s := range args {
 		fmt.Print(s)

@@ -3,8 +3,8 @@ package cat
 import(
 	"os"
 	"io"
-	"flag"
 	"fmt"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 var(
@@ -37,22 +37,15 @@ func fcat(f *os.File) error {
 	return nil
 }
 
-func Run(args []string) {	
-	arg0 := args[0]
-	args = args[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
-	flagSet.IntVar(&blockSize, "bs", 512, "block size")
-	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "usage: %s [options] [files]\n", arg0)
-		flagSet.PrintDefaults()
-	}
-	flagSet.Parse(args)
-	args = flagSet.Args()
+func Run(flags *mtool.Flags) {	
+	flags.IntVar(&blockSize, "bs", 512, "block size")
+	flags.Parse()
+	args := flags.Args()
 	if len(args)>0 {
 		for _, p := range args {
 			e := Cat(p)
 			if e != nil {
-				fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
+				fmt.Fprintf(os.Stderr, "%s.\n", e)
 			}
 		}
 	} else {

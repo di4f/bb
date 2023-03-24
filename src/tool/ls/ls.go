@@ -2,17 +2,15 @@ package ls
 import(
 	"os"
 	"fmt"
-	"flag"
 	"strings"
 	"regexp"
 	"path"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 var(
 	listHidden bool
 	args []string
-	arg0 string
-	flagSet *flag.FlagSet
 )
 
 var slashRegexp = regexp.MustCompile("/+")
@@ -126,30 +124,25 @@ ls(p string, fold int) error {
 	return nil
 }
 
-func Run(argv []string) {
-	arg0 = argv[0]
-	args = argv[1:]
-	flagSet = flag.NewFlagSet(arg0, flag.ExitOnError)
+func Run(flagSet *mtool.Flags) {
 	var foldLvl int
 	flagSet.IntVar(&foldLvl, "r", 1, "List recursively with choosing deepness, can't be negative or zero.")
 	flagSet.BoolVar(&listHidden, "a", false, "List hidden files.")
-	flagSet.Parse(args)
+	flagSet.Parse()
 	args = flagSet.Args()
 
 	if foldLvl<0 {
 		flagSet.Usage()
-		os.Exit(1)
 	}
 
 	if foldLvl==0 && len(args)==0 {
 		flagSet.Usage()
-		os.Exit(1)
 	}
 	
 	if len(args) == 0 {
 		foldLvl -= 1
 		if l, e := ReadDir(".") ; e != nil {
-			fmt.Fprintf(os.Stderr, "%s: %s.\n", arg0, e)
+			fmt.Fprintf(os.Stderr, "%s.\n", e)
 		} else {
 			for _, f := range l {
 				if !shouldList(f.Name()) {
@@ -162,8 +155,7 @@ func Run(argv []string) {
 					e := ls(f.Name(), foldLvl)
 					if e!=nil {
 						fmt.Fprintf(os.Stderr,
-							"%s: %s\n",
-							arg0, e)
+							"%s\n", e)
 					}
 				}
 			}
@@ -172,7 +164,7 @@ func Run(argv []string) {
 		for _, p := range args {
 			e := ls(p, foldLvl)
 			if e != nil {
-				fmt.Fprintf(os.Stderr, "%s: %s\n", arg0, e)
+				fmt.Fprintf(os.Stderr, "%s\n", e)
 			}
 			
 		}

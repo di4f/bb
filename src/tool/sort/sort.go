@@ -4,14 +4,11 @@ import (
 	"fmt"
 	"os"
 	"sort"
-	"flag"
 	"github.com/surdeus/goblin/src/input"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
-func Run(args []string) {
-	flagSet := flag.NewFlagSet(args[0], flag.ExitOnError)	
-	flagSet.Parse(args[1:])
-
+func Run(flagSet *mtool.Flags) {
 	lines, _ := input.ReadAllLines(os.Stdin)
 	sort.Strings(lines)
 	for _, l := range lines {

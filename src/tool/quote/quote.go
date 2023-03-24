@@ -4,10 +4,10 @@ package quote
 import(
 	"os"
 	"io"
-	"flag"
 	"fmt"
 	"unicode"
 	"bufio"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 func HasWhiteSpace(s string) bool {
@@ -19,16 +19,8 @@ func HasWhiteSpace(s string) bool {
 	return false
 }
 
-func Run(args []string) {	
-	arg0 := args[0]
-	args = args[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
-	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Usage of %s: %s\n", arg0, arg0)
-		flagSet.PrintDefaults()
-	}
-	flagSet.Parse(args)
-	args = flagSet.Args()
+func Run(flagSet *mtool.Flags) {	
+	flagSet.Parse()
 
 	r := bufio.NewReader(os.Stdin)
 	for{

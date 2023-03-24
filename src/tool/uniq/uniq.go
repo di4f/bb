@@ -4,25 +4,18 @@ package uniq
 import(
 	"os"
 	"fmt"
-	"flag"
 	"bufio"
 	"io"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
-func Run(args []string) {
+func Run(flagSet *mtool.Flags) {
 	var(
 		Uflag bool
 	)
-	arg0 := args[0]
-	args = args[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
 	flagSet.BoolVar(&Uflag, "U", false, "Print every line just one time.")
-	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Usage of %s: %s [options] [string]\n", arg0, arg0)
-		flagSet.PrintDefaults()
-	}
-	flagSet.Parse(args)
-	args = flagSet.Args()
+	flagSet.Parse()
+	//args := flagSet.Args()
 
 	r := bufio.NewReader(os.Stdin)
 	u := make(map[string]int)

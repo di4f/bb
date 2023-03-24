@@ -6,8 +6,8 @@ import (
 	"bufio"
 	"fmt"
 	"unicode"
-	"flag"
 	"strconv"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 var (
@@ -46,21 +46,17 @@ func finish() {
 	os.Exit(0)
 }
 
-func Run(args []string) {
+func Run(flagSet *mtool.Flags) {
 	var (
 		r rune
 		siz int
 	)
-	arg0 := args[0]
-	args = args[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
-
 	flagSet.BoolVar(&flags[charsFlag], "c", false, "print amount of chars(bytes)")
 	flagSet.BoolVar(&flags[runesFlag], "r", false, "print amount of runes in UTF stream")
 	flagSet.BoolVar(&flags[wordsFlag], "w", false, "print amount of words")
 	flagSet.BoolVar(&flags[linesFlag], "l", false, "print amount of lines")
 
-	flagSet.Parse(args)
+	flagSet.Parse()
 
 	for i, v := range flags {
 		if v {

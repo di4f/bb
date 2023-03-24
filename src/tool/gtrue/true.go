@@ -1,5 +1,5 @@
 package gtrue
 
-func Run(args []string) {
-}
+import "github.com/surdeus/gomtool/src/mtool"
 
+func Run(flags *mtool.Flags) {}
