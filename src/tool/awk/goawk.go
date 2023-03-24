@@ -73,6 +73,8 @@ func Run(flags *mtool.Flags) {
 	// Parse command line arguments manually rather than using the
 	// "flag" package, so we can support flags with no space between
 	// flag and argument, like '-F:' (allowed by POSIX)
+	
+	// J's comment: nope, we will change it, lol.
 	var progFiles []string
 	var vars []string
 	fieldSep := " "
@@ -86,10 +88,10 @@ func Run(flags *mtool.Flags) {
 	header := false
 
 	argv0 := flags.UtilName()
-	args := flags.Args()
+	args := flags.AllArgs()
 
 	var i int
-	for i = 1; i < len(args); i++ {
+	for i = 0; i < len(args); i++ {
 		// Stop on explicit end of args or first arg not prefixed with "-"
 		arg := args[i]
 		if arg == "--" {
@@ -181,7 +183,7 @@ func Run(flags *mtool.Flags) {
 
 	// Any remaining args are program and input files
 	args = args[i:]
-
+	
 	var src []byte
 	var stdinBytes []byte // used if there's a parse error
 	if len(progFiles) > 0 {

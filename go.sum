@@ -16,3 +16,7 @@ github.com/surdeus/gomtool v0.0.0-20230324073313-c382bc403f8b h1:9IJVeXxRDTPlp12
 github.com/surdeus/gomtool v0.0.0-20230324073313-c382bc403f8b/go.mod h1:48d4QXOu0MwH0fbqseBInNdS6WiJ0+EzZU9K5sGu4uo=
 github.com/surdeus/gomtool v0.0.0-20230324163514-3199e25c3890 h1:mT4VDgCb2AgPfq2k4GfXI8O3I2sIjHJUaJwBvx95AYM=
 github.com/surdeus/gomtool v0.0.0-20230324163514-3199e25c3890/go.mod h1:48d4QXOu0MwH0fbqseBInNdS6WiJ0+EzZU9K5sGu4uo=
+github.com/surdeus/gomtool v0.0.0-20230324171804-d106f3a7c3da h1:Wm3ZbhHuH/26B4/vde1S/7t3UPdAXVH7aX1LmHtUTWw=
+github.com/surdeus/gomtool v0.0.0-20230324171804-d106f3a7c3da/go.mod h1:48d4QXOu0MwH0fbqseBInNdS6WiJ0+EzZU9K5sGu4uo=
+github.com/surdeus/gomtool v0.0.0-20230324173629-09da5dcd0204 h1:eNKjFr0w81mb1d3i2P4uAEIzgc6VVTRJJy6BDWq2vK0=
+github.com/surdeus/gomtool v0.0.0-20230324173629-09da5dcd0204/go.mod h1:48d4QXOu0MwH0fbqseBInNdS6WiJ0+EzZU9K5sGu4uo=
