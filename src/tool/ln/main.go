@@ -1,18 +1,17 @@
 package ln
 
 import (
-	"flag"
 	"fmt"
 	"os"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
-func Run(args []string) {
+func Run(flagSet *mtool.Flags) {
 	var lflag bool
-	flagSet := flag.NewFlagSet(args[0], flag.ExitOnError)
 	flagSet.BoolVar(&lflag, "s", false, "make a symbolic link, not a hard one")
 
-	flagSet.Parse(args[1:])
-	args = flagSet.Args()
+	flagSet.Parse()
+	args := flagSet.Args()
 
 	if len(args) != 2 {
 		flagSet.Usage()

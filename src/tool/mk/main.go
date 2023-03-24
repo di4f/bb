@@ -2,7 +2,6 @@ package mk
 
 import (
 	"bufio"
-	"flag"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -11,6 +10,7 @@ import (
 	"sync"
 
 	"github.com/surdeus/goblin/src/pathx"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 // True if messages should be printed without fancy colors.
@@ -317,23 +317,18 @@ func mkPrintRecipe(target string, recipe string, quiet bool) {
 	mkMsgMutex.Unlock()
 }
 
-func Run(args []string) {
+func Run(flags *mtool.Flags) {
 	var mkfilepath string
 	var interactive bool
 	var dryrun bool
 	var shallowrebuild bool
 	var quiet bool
 
-	arg0 := args[0]
-	args = args[1:]
-
 	if mkincdir := os.Getenv("MKINCDIR"); mkincdir == "" {
 		homeDir, _ := os.UserHomeDir()
 		homeDir = pathx.FromReal(homeDir).String()
 		os.Setenv("MKINCDIR", homeDir+"/app/goblin/mk/inc")
 	}
-
-	flags := flag.NewFlagSet(arg0, flag.ExitOnError)
 
 	flags.StringVar(&mkfilepath, "f", "mkfile", "use the given file as mkfile")
 	flags.BoolVar(&dryrun, "n", false, "print commands without actually executing")
@@ -342,7 +337,7 @@ func Run(args []string) {
 	flags.IntVar(&subprocsAllowed, "p", 4, "maximum number of jobs to execute in parallel")
 	flags.BoolVar(&interactive, "i", false, "prompt before executing rules")
 	flags.BoolVar(&quiet, "q", false, "don't print recipes before executing them")
-	flags.Parse(args)
+	flags.Parse()
 
 	mkfile, err := os.Open(pathx.From(mkfilepath).Real())
 	if err != nil {

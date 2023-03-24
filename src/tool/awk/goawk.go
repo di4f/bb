@@ -41,6 +41,8 @@ import (
 	"github.com/surdeus/goblin/src/tool/awk/interp"
 	"github.com/surdeus/goblin/src/tool/awk/lexer"
 	"github.com/surdeus/goblin/src/tool/awk/parser"
+	
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 const (
@@ -67,7 +69,7 @@ Additional GoAWK arguments:
 `
 )
 
-func Run(args []string) {
+func Run(flags *mtool.Flags) {
 	// Parse command line arguments manually rather than using the
 	// "flag" package, so we can support flags with no space between
 	// flag and argument, like '-F:' (allowed by POSIX)
@@ -83,7 +85,8 @@ func Run(args []string) {
 	outputMode := ""
 	header := false
 
-	argv0 := args[0]
+	argv0 := flags.UtilName()
+	args := flags.Args()
 
 	var i int
 	for i = 1; i < len(args); i++ {

@@ -18,7 +18,6 @@ import (
 	"github.com/surdeus/goblin/src/tool/mk"
 	"github.com/surdeus/goblin/src/tool/mkdir"
 	"github.com/surdeus/goblin/src/tool/noext"
-	"github.com/surdeus/goblin/src/tool/path"
 	"github.com/surdeus/goblin/src/tool/paths"
 	"github.com/surdeus/goblin/src/tool/quote"
 	"github.com/surdeus/goblin/src/tool/read"
@@ -57,8 +56,7 @@ func main() {
 		"ftest":    mtool.Tool{ftest.Run, "filter files by specified features", ""},
 		"range":    mtool.Tool{grange.Run, "too lazy", ""},
 		"in":       mtool.Tool{in.Run, "filter strings from stdin that aren not in arguments", ""},
-		"useprog":  mtool.Tool{useprog.Run, "print the name of the first existing program in arg list", ""},
-		"path":     mtool.Tool{path.Run, "print cross platform path based on cmd arguments", ""},
+		"which":  mtool.Tool{useprog.Run, "print the name or the path of the first existing program in arg list", ""},
 		"mk":       mtool.Tool{mk.Run, "file dependency system, simpler make", ""},
 		"awk":      mtool.Tool{awk.Run, "simple scripting language for working with string templates", ""},
 		"paths": mtool.Tool{

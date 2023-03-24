@@ -5,27 +5,18 @@ import (
 	"io"
 	"bufio"
 	"fmt"
-	"flag"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
-func Run(args []string) {
+func Run(flagSet *mtool.Flags) {
 	var (
 		print bool
 		not bool
 	)
-	arg0 := args[0]
-	args = args[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
 	flagSet.BoolVar(&print, "p", false, "print matching lines")
 	flagSet.BoolVar(&not, "n", false, "find not matching lines")
-	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "usage: %s <str1> [str2, ...str3]\n", arg0)
-		flagSet.PrintDefaults()
-		os.Exit(1)
-	}
-
-	flagSet.Parse(args)
-	args = flagSet.Args()
+	flagSet.Parse()
+	args := flagSet.Args()
 
 	if len(args) == 0 {
 		//flagSet.Usage()

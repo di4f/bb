@@ -5,7 +5,7 @@ import (
 	"io"
 	"bufio"
 	"fmt"
-	"flag"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 var (
@@ -76,23 +76,14 @@ func checkFile(p string) bool {
 	return true
 }
 
-func Run(args []string) {
-	arg0 := args[0]
-	args = args[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
-	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "usage: %s <options>\n", arg0)
-		flagSet.PrintDefaults()
-		os.Exit(1)
-	}
-
+func Run(flagSet *mtool.Flags) {
 	flagSet.BoolVar(&flags[fileFlag], "f", false, "is file")
 	flagSet.BoolVar(&flags[dirFlag], "d", false, "is directory")
 	flagSet.BoolVar(&flags[writFlag], "w", false, "is writable")
 	flagSet.BoolVar(&flags[readFlag], "r", false, "is readable")
 
-	flagSet.Parse(args)
-	args = flagSet.Args()
+	flagSet.Parse()
+	args := flagSet.Args()
 
 	if len(args) != 0 {
 		flagSet.Usage()

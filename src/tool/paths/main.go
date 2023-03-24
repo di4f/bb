@@ -3,7 +3,6 @@ package paths
 import (
 	"bufio"
 	"errors"
-	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -11,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/surdeus/goblin/src/pathx"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 var (
@@ -50,17 +50,15 @@ func handlePath(p string) {
 	fmt.Println(toPrint)
 }
 
-func Run(args []string) {
-	arg0 := args[0]
-	args = args[1:]
-	flags := flag.NewFlagSet(arg0, flag.ExitOnError)
+func Run(flags *mtool.Flags) {
 	flags.StringVar(&part, "p", "all", "part of path you want to print")
 	flags.BoolVar(&r, "r", false, "print real OS dependent paths")
 	flags.BoolVar(&fromReal, "fr", false, "take input paths as real ones")
 	flags.BoolVar(&ec, "ec", false, "escape characters (mostly for '\\' char in Git bash")
 
-	flags.Parse(args)
-	args = flags.Args()
+	flags.Parse()
+	args := flags.Args()
+	
 	lhandler, ok := handlers[part]
 	if !ok {
 		log.Fatal(noPartErr)

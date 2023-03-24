@@ -1,14 +1,13 @@
 package grange
 /* Concatenate files in "stdout". */
 import(
-	"os"
-	"flag"
 	"fmt"
 	"strconv"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
 var(
-	flagSet *flag.FlagSet
+	flagSet *mtool.Flags
 	args []string
 	blockSize int
 	rangeType string
@@ -106,17 +105,11 @@ func ByteRange() {
 func RuneRange() {
 }
 
-func Run(arg []string) {	
-	arg0 := arg[0]
-	args = arg[1:]
-	flagSet = flag.NewFlagSet(arg0, flag.ExitOnError)
-	flagSet.StringVar(&rangeType, "t", "int", "range type")
-	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "usage: %s [options] [files]\n", arg0)
-		flagSet.PrintDefaults()
-		os.Exit(1)
-	}
-	flagSet.Parse(args)
+func Run(flags *mtool.Flags) {	
+	flags.StringVar(&rangeType, "t", "int", "range type")
+	flags.Parse()
 	args = flagSet.Args()
+	flagSet = flags
+	
 	rangeTypeMap[rangeType]()
 }

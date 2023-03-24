@@ -1,26 +1,16 @@
 package useprog
 
 import (
-	"os"
 	"os/exec"
 	"fmt"
-	"flag"
+	"github.com/surdeus/gomtool/src/mtool"
 )
 
-func Run(args []string) {
-	arg0 := args[0]
-	args = args[1:]
-	flagSet := flag.NewFlagSet(arg0, flag.ExitOnError)
-	flagSet.Usage = func() {
-		fmt.Fprintf(os.Stderr, "usage: %s <prog1> [prog2, ...prog3]\n", arg0)
-		flagSet.PrintDefaults()
-		os.Exit(1)
-	}
+func Run(flagSet *mtool.Flags) {
+	flagSet.Parse()
+	args := flagSet.Args()
 
-	flagSet.Parse(args)
-	args = flagSet.Args()
-
-	if len(args) == 0 {
+	if len(args) < 1 {
 		flagSet.Usage()
 	}
 
