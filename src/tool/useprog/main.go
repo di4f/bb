@@ -1,12 +1,16 @@
 package useprog
 
 import (
+	"os"
 	"os/exec"
 	"fmt"
 	"github.com/surdeus/gomtool/src/mtool"
+	"path/filepath"
 )
 
 func Run(flagSet *mtool.Flags) {
+	var nVar bool
+	flagSet.BoolVar(&nVar, "n", false, "print only name, not path")
 	flagSet.Parse()
 	args := flagSet.Args()
 
@@ -15,11 +19,18 @@ func Run(flagSet *mtool.Flags) {
 	}
 
 	for _, v := range args {
-		_, err := exec.LookPath(v)
+		pth, err := exec.LookPath(v)
 		if err != nil {
 			continue
 		}
-		fmt.Printf("%s", v)
-		break
+		var toPrint string
+		if nVar {
+			toPrint = v
+		} else {
+			toPrint = filepath.ToSlash(pth)
+		}
+		fmt.Printf("%s", toPrint)
+		os.Exit(0)
 	}
+	os.Exit(1)
 }

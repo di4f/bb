@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"github.com/surdeus/gomtool/src/mtool"
+	"path/filepath"
 )
 
 func Run(flagSet *mtool.Flags) {
@@ -20,6 +21,9 @@ func Run(flagSet *mtool.Flags) {
 
 	src := args[0]
 	dst := args[1]
+	
+	src = filepath.FromSlash(src)
+	dst = filepath.FromSlash(dst)
 
 	var err error
 	if lflag {

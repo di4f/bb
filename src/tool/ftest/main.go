@@ -6,6 +6,7 @@ import (
 	"bufio"
 	"fmt"
 	"github.com/surdeus/gomtool/src/mtool"
+	"path/filepath"
 )
 
 var (
@@ -67,6 +68,7 @@ func IsReadable(p string) bool {
 }
 
 func checkFile(p string) bool {
+	p = filepath.FromSlash(p)
 	for _, v := range flagList {
 		if !flagMap[v](p){
 			return false
