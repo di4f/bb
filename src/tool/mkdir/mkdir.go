@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/surdeus/goblin/src/pathx"
+	"path/filepath"
 	"github.com/surdeus/gomtool/src/mtool"
 )
 
@@ -24,7 +24,7 @@ func Run(flagSet *mtool.Flags) {
 	mode := os.FileMode(modeArg)
 	for _, path := range args {
 		var e error
-		pth := pathx.From(path).Real()
+		pth := filepath.FromSlash(path)
 		if parentFlag {
 			e = os.MkdirAll(pth, mode)
 		} else {

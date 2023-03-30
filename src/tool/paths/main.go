@@ -9,7 +9,8 @@ import (
 	"path"
 	"strings"
 
-	"github.com/surdeus/goblin/src/pathx"
+	//"github.com/surdeus/goblin/src/pathx"
+	"path/filepath"
 	"github.com/surdeus/gomtool/src/mtool"
 )
 
@@ -30,7 +31,7 @@ var (
 
 func handlePath(p string) {
 	if fromReal {
-		p = pathx.FromReal(p).String()
+		p = filepath.ToSlash(p)
 	}
 	if handler != nil {
 		p = handler(p)
@@ -38,7 +39,7 @@ func handlePath(p string) {
 
 	var toPrint string
 	if r {
-		toPrint = pathx.From(p).Real()
+		toPrint = filepath.FromSlash(p)
 	} else {
 		toPrint = p
 	}
