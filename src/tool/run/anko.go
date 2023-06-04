@@ -17,7 +17,14 @@ import (
 	"github.com/surdeus/goblin/src/tool/run/parser"
 	"github.com/surdeus/goblin/src/tool/run/vm"
 	"github.com/surdeus/gomtool/src/mtool"
+	"os/exec"
 )
+
+type Cmd struct {
+	input io.Reader
+	*exec.Cmd
+	output io.Writer
+}
 
 const version = "0.1.8"
 
@@ -66,7 +73,71 @@ func parseFlags() {
 
 func setupEnv() {
 	e = env.NewEnv()
+	cmd := func(args ...string) *Cmd {
+		if len(args) < 1 {
+			panic("too few arguments")
+		}
+		
+		cmd := exec.Command(args[0], args...)
+		
+		return &Cmd{
+			Cmd: cmd,
+			input: os.Stdin,
+			output: os.Stdout,
+		}
+	}
 	e.Define("args", args)
+	e.Define("cmd", cmd)
+	e.Define("rcmd", func(args ...string) bool {
+		rcmd := cmd(args...)
+		
+		input := rcmd.input
+		output := rcmd.output
+		
+		stdin, err := rcmd.StdinPipe()
+		if err != nil {
+			panic(err)
+		}
+		
+		stdout, err := rcmd.StdoutPipe()
+		if err != nil {
+			panic(err)
+		}
+		
+		err = rcmd.Start()
+		if err != nil {
+			panic(err)
+		}
+		
+		ibuf := make([]byte, 512)
+		obuf := make([]byte, 512)
+		for {
+			fmt.Println("in")
+			ni, err := input.Read(ibuf)
+			stdin.Write(ibuf[:ni])
+			if err == io.EOF {
+				break
+			} else if err != nil {
+				fmt.Println("check")
+				panic(err)
+			}
+			
+			no, err := stdout.Read(obuf)
+			output.Write(obuf[:no])
+			if err == io.EOF {
+				break
+			} else if err != nil {
+				panic(err)
+			}
+		}
+	
+		err = rcmd.Wait()
+		if err != nil {
+			fmt.Println("shit", err)
+		}
+		
+		return err == nil
+	})
 	core.Import(e)
 }
 
