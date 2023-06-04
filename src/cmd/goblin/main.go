@@ -29,6 +29,7 @@ import (
 	"github.com/surdeus/goblin/src/tool/wc"
 	"github.com/surdeus/goblin/src/tool/whoami"
 	"github.com/surdeus/goblin/src/tool/yes"
+	"github.com/surdeus/goblin/src/tool/run"
 	"github.com/surdeus/gomtool/src/mtool"
 )
 
@@ -72,6 +73,11 @@ func main() {
 		"ln": mtool.Tool{
 			ln.Run,
 			"link files",
+			"",
+		},
+		"run": mtool.Tool{
+			run.Run,
+			"run anko script",
 			"",
 		},
 	}
