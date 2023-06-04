@@ -1,3 +1,5 @@
 
-rcmd("dir")
+if rcmd("ls") {
+	rcmd("goblin", "echo", "full shit")
+}
 

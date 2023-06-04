@@ -21,9 +21,9 @@ import (
 )
 
 type Cmd struct {
-	input io.Reader
+	input io.ReadCloser
 	*exec.Cmd
-	output io.Writer
+	output io.WriteCloser
 }
 
 const version = "0.1.8"
@@ -109,13 +109,15 @@ func setupEnv() {
 			panic(err)
 		}
 		
-		ibuf := make([]byte, 512)
 		obuf := make([]byte, 512)
-		
 		go func() {
+			var (
+				err error
+				n int
+			)
 			for {
-				no, err := stdout.Read(obuf)
-				output.Write(obuf[:no])
+				n, err = stdout.Read(obuf)
+				output.Write(obuf[:n])
 				if err == io.EOF {
 					break
 				} else if err != nil {
@@ -125,10 +127,15 @@ func setupEnv() {
 			stdout.Close()
 		}()
 		
+		ibuf := make([]byte, 512)
 		go func() {
+			var (
+				err error
+				n int
+			)
 			for {
-				ni, err := input.Read(ibuf)
-				stdin.Write(ibuf[:ni])
+				n, err = input.Read(ibuf)
+				stdin.Write(ibuf[:n])
 				if err == io.EOF {
 					break
 				} else if err != nil {
@@ -140,10 +147,11 @@ func setupEnv() {
 	
 		err = rcmd.Wait()
 		if err != nil {
-			fmt.Println("shit", err)
+			//fmt.Println(err)
+			return false
 		}
 		
-		return err == nil
+		return true
 	})
 	core.Import(e)
 }
