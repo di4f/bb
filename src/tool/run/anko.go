@@ -78,7 +78,7 @@ func setupEnv() {
 			panic("too few arguments")
 		}
 		
-		cmd := exec.Command(args[0], args...)
+		cmd := exec.Command(args[0], args[1:]...)
 		
 		return &Cmd{
 			Cmd: cmd,
@@ -111,25 +111,32 @@ func setupEnv() {
 		
 		ibuf := make([]byte, 512)
 		obuf := make([]byte, 512)
-		for {
-			fmt.Println("in")
-			ni, err := input.Read(ibuf)
-			stdin.Write(ibuf[:ni])
-			if err == io.EOF {
-				break
-			} else if err != nil {
-				fmt.Println("check")
-				panic(err)
+		
+		go func() {
+			for {
+				no, err := stdout.Read(obuf)
+				output.Write(obuf[:no])
+				if err == io.EOF {
+					break
+				} else if err != nil {
+					panic(err)
+				}
 			}
-			
-			no, err := stdout.Read(obuf)
-			output.Write(obuf[:no])
-			if err == io.EOF {
-				break
-			} else if err != nil {
-				panic(err)
+			stdout.Close()
+		}()
+		
+		go func() {
+			for {
+				ni, err := input.Read(ibuf)
+				stdin.Write(ibuf[:ni])
+				if err == io.EOF {
+					break
+				} else if err != nil {
+					panic(err)
+				}
 			}
-		}
+			stdin.Close()
+		}()
 	
 		err = rcmd.Wait()
 		if err != nil {
