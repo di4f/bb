@@ -1,0 +1,8 @@
+e = 5
+v = 53
+println(e + v)
+
+if v < 55 {
+	println("it fucking works")
+}
+

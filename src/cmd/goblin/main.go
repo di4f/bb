@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/surdeus/gomtool/src/mtool"
+	
 	"github.com/surdeus/goblin/src/tool/awk"
 	"github.com/surdeus/goblin/src/tool/basename"
 	"github.com/surdeus/goblin/src/tool/cat"
@@ -29,8 +31,7 @@ import (
 	"github.com/surdeus/goblin/src/tool/wc"
 	"github.com/surdeus/goblin/src/tool/whoami"
 	"github.com/surdeus/goblin/src/tool/yes"
-	"github.com/surdeus/goblin/src/tool/run"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/surdeus/goblin/src/tool/anko"
 )
 
 func main() {
@@ -75,9 +76,9 @@ func main() {
 			"link files",
 			"",
 		},
-		"run": mtool.Tool{
-			run.Run,
-			"run anko script",
+		"anko": mtool.Tool{
+			anko.Run,
+			"run embedded anko",
 			"",
 		},
 	}
