@@ -106,46 +106,22 @@ func setupEnv() {
 		if err != nil {
 			panic(err)
 		}
-		
-		obuf := make([]byte, 512)
-		go func() {
-			var (
-				err error
-				n int
-			)
-			for {
-				n, err = stdout.Read(obuf)
-				output.Write(obuf[:n])
-				if err == io.EOF {
-					break
-				} else if err != nil {
-					panic(err)
-				}
+		go func(){
+			_, err = io.Copy(stdin, input)
+			if err != nil {
+				panic(err)
 			}
-			stdout.Close()
 		}()
-		
-		ibuf := make([]byte, 512)
 		go func() {
-			var (
-				err error
-				n int
-			)
-			for {
-				n, err = input.Read(ibuf)
-				stdin.Write(ibuf[:n])
-				if err == io.EOF {
-					break
-				} else if err != nil {
-					panic(err)
-				}
+			_, err = io.Copy(output, stdout)
+			if err != nil {
+				panic(err)
 			}
-			stdin.Close()
 		}()
 	
 		err = rcmd.Wait()
 		if err != nil {
-			//fmt.Println(err)
+			fmt.Println(err)
 			return false
 		}
 		

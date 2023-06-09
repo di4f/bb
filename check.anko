@@ -6,3 +6,5 @@ if v < 55 {
 	println("it fucking works")
 }
 
+rcmd("goblin", "ls", "-r", "100", "src") && println("it works also")
+
