@@ -20,10 +20,10 @@ import (
 	"os/exec"
 )
 
-type Cmd struct {
-	input io.ReadCloser
+type Command struct {
+	input io.Reader
 	*exec.Cmd
-	output io.WriteCloser
+	output io.Writer
 }
 
 const version = "0.1.8"
@@ -33,78 +33,71 @@ var (
 	file        string
 	args        []string
 	e           *env.Env
-	flag *mtool.Flags
+	//flag *mtool.Flags
 )
 
 func Run(flagSet *mtool.Flags) {
-	var exitCode int
 	
-	flag = flagSet
-
-	parseFlags()
-	setupEnv()
-	exitCode = runNonInteractive()
-	//if flagExecute != "" || flag.NArg() > 0 {
-	//} 
-
-	os.Exit(exitCode)
-}
-
-func parseFlags() {
-	flagVersion := flag.Bool("v", false, "prints out the version and then exits")
-	flag.StringVar(&flagExecute, "e", "", "execute the Anko code")
-	flag.Parse()
-
-	if *flagVersion {
+	printVersion := flagSet.Bool("v", false, "prints out the version and then exits")
+	flagSet.StringVar(&flagExecute, "e", "", "execute the Anko code")
+	flagSet.Parse()
+	args := flagSet.Args()
+	
+	if *printVersion {
 		fmt.Println(version)
 		os.Exit(0)
 	}
-
-	if flagExecute != "" || flag.NArg() < 1 {
-		args = flag.Args()
-		return
+	
+	setupEnv()
+	if flagExecute != "" {
+		exitCode := runNonInteractive()
+		os.Exit(exitCode)
 	}
-
-	file = flag.Arg(0)
-	args = flag.Args()[1:]
+	
+	if len(args) < 1 {
+		file = "#stdin"
+	} else {
+		file = args[0]
+	}
+	
+	
+	exitCode := runNonInteractive()
+	os.Exit(exitCode)
 }
 
-func setupEnv() {
-	e = env.NewEnv()
-	cmd := func(args ...string) *Cmd {
+func Cmd(args ...string) *Command {
 		if len(args) < 1 {
 			panic("too few arguments")
 		}
 		
 		cmd := exec.Command(args[0], args[1:]...)
 		
-		return &Cmd{
-			Cmd: cmd,
-			input: os.Stdin,
-			output: os.Stdout,
-		}
+		return &Command{ Cmd: cmd }
 	}
-	e.Define("args", args)
-	e.Define("cmd", cmd)
-	e.Define("rcmd", func(args ...string) bool {
-		rcmd := cmd(args...)
+
+func (cmd *Command)IO(input io.Reader, output io.Writer) *Command {
+	cmd.input = input
+	cmd.output = output
+	return cmd
+}
+
+func (cmd *Command) Run() error {
+		input := cmd.input
+		output := cmd.output
 		
-		input := rcmd.input
-		output := rcmd.output
-		
-		stdin, err := rcmd.StdinPipe()
+		stdin, err := cmd.StdinPipe()
 		if err != nil {
-			panic(err)
+			return err
 		}
 		
-		stdout, err := rcmd.StdoutPipe()
+		stdout, err := cmd.StdoutPipe()
 		if err != nil {
-			panic(err)
+			return err
 		}
 		
-		err = rcmd.Start()
+		err = cmd.Start()
 		if err != nil {
-			panic(err)
+			return err
 		}
 		go func(){
 			_, err = io.Copy(stdin, input)
@@ -112,6 +105,7 @@ func setupEnv() {
 				panic(err)
 			}
 		}()
+		
 		go func() {
 			_, err = io.Copy(output, stdout)
 			if err != nil {
@@ -119,13 +113,22 @@ func setupEnv() {
 			}
 		}()
 	
-		err = rcmd.Wait()
+		err = cmd.Wait()
 		if err != nil {
 			fmt.Println(err)
-			return false
+			return err
 		}
 		
-		return true
+		return nil
+}
+
+func setupEnv() {
+	e = env.NewEnv()
+	e.Define("Args", args)
+	e.Define("Cmd", Cmd)
+	e.Define("Rcmd", func(args ...string) bool {
+		cmd := Cmd(args...).IO(os.Stdin, os.Stdout)
+		return cmd.Run() == nil
 	})
 	core.Import(e)
 }
