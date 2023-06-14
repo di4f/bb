@@ -11,11 +11,11 @@ import (
 	"os"
 	"strings"
 
-	"github.com/surdeus/goblin/src/tool/anko/core"
-	"github.com/surdeus/goblin/src/tool/anko/env"
-	_ "github.com/surdeus/goblin/src/tool/anko/packages"
-	"github.com/surdeus/goblin/src/tool/anko/parser"
-	"github.com/surdeus/goblin/src/tool/anko/vm"
+	"github.com/surdeus/anko/core"
+	"github.com/surdeus/anko/env"
+	_ "github.com/surdeus/anko/packages"
+	"github.com/surdeus/anko/parser"
+	"github.com/surdeus/anko/vm"
 	"github.com/surdeus/gomtool/src/mtool"
 	"os/exec"
 )
