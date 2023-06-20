@@ -22,3 +22,5 @@ github.com/surdeus/gomtool v0.0.0-20230324171804-d106f3a7c3da h1:Wm3ZbhHuH/26B4/
 github.com/surdeus/gomtool v0.0.0-20230324171804-d106f3a7c3da/go.mod h1:48d4QXOu0MwH0fbqseBInNdS6WiJ0+EzZU9K5sGu4uo=
 github.com/surdeus/gomtool v0.0.0-20230324173629-09da5dcd0204 h1:eNKjFr0w81mb1d3i2P4uAEIzgc6VVTRJJy6BDWq2vK0=
 github.com/surdeus/gomtool v0.0.0-20230324173629-09da5dcd0204/go.mod h1:48d4QXOu0MwH0fbqseBInNdS6WiJ0+EzZU9K5sGu4uo=
+github.com/surdeus/goscript v0.0.0-20230620135552-456d895c0747 h1:joKa0jw9NNjL2gfMaUP841AGb74737MiQVh0Nsr7NyQ=
+github.com/surdeus/goscript v0.0.0-20230620135552-456d895c0747/go.mod h1:zuG5tMqJ18/QMypvrfgaZw3rR/t4mlWPx4pQmQeq6zU=

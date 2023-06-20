@@ -1,6 +1,6 @@
 // +build !appengine
 
-package anko
+package script
 
 import (
 	"bufio"
@@ -11,11 +11,11 @@ import (
 	"os"
 	"strings"
 
-	"github.com/surdeus/anko/core"
-	"github.com/surdeus/anko/env"
-	_ "github.com/surdeus/anko/packages"
-	"github.com/surdeus/anko/parser"
-	"github.com/surdeus/anko/vm"
+	"github.com/surdeus/goscript/core"
+	"github.com/surdeus/goscript/env"
+	_ "github.com/surdeus/goscript/packages"
+	"github.com/surdeus/goscript/parser"
+	"github.com/surdeus/goscript/vm"
 	"github.com/surdeus/gomtool/src/mtool"
 	"os/exec"
 )
