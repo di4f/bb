@@ -2,6 +2,8 @@ e = 5
 v = 53
 println(e + v)
 
+println("cock", Cmd("ls").Stdout())
+
 if v < 55 {
 	println("it fucking works")
 }

@@ -18,7 +18,10 @@ import (
 	"github.com/surdeus/goscript/vm"
 	"github.com/surdeus/gomtool/src/mtool"
 	"os/exec"
+	//"bytes"
 )
+
+type Output []byte
 
 type Command struct {
 	input io.Reader
@@ -35,6 +38,10 @@ var (
 	e           *env.Env
 	//flag *mtool.Flags
 )
+
+func (o Output) String() string {
+	return string(o)
+}
 
 func Run(flagSet *mtool.Flags) {
 	
@@ -79,6 +86,33 @@ func (cmd *Command)IO(input io.Reader, output io.Writer) *Command {
 	cmd.input = input
 	cmd.output = output
 	return cmd
+}
+
+func (cmd *Command) Stdout() Output {
+	r, w := io.Pipe()
+	cmd = cmd.IO(os.Stdin, w)
+	
+	ret := []byte{}
+	
+	go func() {
+		buf := make([]byte, 512)
+		for {
+			n, err := r.Read(buf)
+			ret = append(ret, buf[:n]...)
+			if err == io.EOF {
+				break
+			} else if err != nil {
+				panic(err)
+			}
+		}
+	}()
+	
+	err := cmd.Run()
+	if err != nil {
+		panic(err)
+	}
+	
+	return Output(ret)
 }
 
 func (cmd *Command) Run() error {
