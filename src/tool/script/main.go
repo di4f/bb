@@ -37,11 +37,22 @@ var (
 	args        []string
 	e           *env.Env
 	//flag *mtool.Flags
+	// Standard shell separators.
+	shSeps = "\t\r\n "
 )
 
 func (o Output) String() string {
 	return string(o)
 }
+
+func (o Output) ShSplit() []string {
+	return strings.Fields(string(o))
+}
+
+func (o Output) Split(sep string) []string {
+	return strings.Split(o.String(), sep)
+}
+
 
 func Run(flagSet *mtool.Flags) {
 	

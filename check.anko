@@ -2,7 +2,9 @@ e = 5
 v = 53
 println(e + v)
 
-println("cock", Cmd("ls").Stdout())
+for v in Cmd("ls").Stdout().ShSplit() {
+	println("file:", v)
+}
 
 if v < 55 {
 	println("it fucking works")
