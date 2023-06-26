@@ -17,8 +17,8 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/surdeus/goblin/src/tool/awk/internal/ast"
-	. "github.com/surdeus/goblin/src/tool/awk/lexer"
+	"github.com/mojosa-software/goblin/src/tool/awk/internal/ast"
+	. "github.com/mojosa-software/goblin/src/tool/awk/lexer"
 )
 
 // Print a line of output followed by a newline

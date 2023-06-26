@@ -13,8 +13,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/surdeus/goblin/src/tool/awk/interp"
-	"github.com/surdeus/goblin/src/tool/awk/parser"
+	"github.com/mojosa-software/goblin/src/tool/awk/interp"
+	"github.com/mojosa-software/goblin/src/tool/awk/parser"
 )
 
 func isFuzzTest(test interpTest) bool {

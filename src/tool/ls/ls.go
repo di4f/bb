@@ -5,7 +5,7 @@ import(
 	"strings"
 	"regexp"
 	"path"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/gomtool/src/mtool"
 )
 
 var(

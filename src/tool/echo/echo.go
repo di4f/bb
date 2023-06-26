@@ -3,7 +3,7 @@ package echo
 
 import (
 	"fmt"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/gomtool/src/mtool"
 )
 
 var(

@@ -38,11 +38,11 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/surdeus/goblin/src/tool/awk/interp"
-	"github.com/surdeus/goblin/src/tool/awk/lexer"
-	"github.com/surdeus/goblin/src/tool/awk/parser"
+	"github.com/mojosa-software/goblin/src/tool/awk/interp"
+	"github.com/mojosa-software/goblin/src/tool/awk/lexer"
+	"github.com/mojosa-software/goblin/src/tool/awk/parser"
 	
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/gomtool/src/mtool"
 )
 
 const (

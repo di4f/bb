@@ -93,12 +93,12 @@ if err != nil { ... }
 
 Note that `INPUTMODE` and `OUTPUTMODE` set using `Vars` or in the `BEGIN` block will override these settings.
 
-See the [full reference documentation](https://pkg.go.dev/github.com/surdeus/goblin/src/tool/awk/interp#Config) for the `interp.Config` struct.
+See the [full reference documentation](https://pkg.go.dev/github.com/mojosa-software/goblin/src/tool/awk/interp#Config) for the `interp.Config` struct.
 
 
 ## Examples
 
-Below are some examples using the [testdata/csv/states.csv](https://github.com/surdeus/goblin/src/tool/awk/blob/master/testdata/csv/states.csv) file, which is a simple CSV file whose contents are as follows:
+Below are some examples using the [testdata/csv/states.csv](https://github.com/mojosa-software/goblin/src/tool/awk/blob/master/testdata/csv/states.csv) file, which is a simple CSV file whose contents are as follows:
 
 ```
 "State","Abbreviation"
@@ -278,7 +278,7 @@ NY
 
 The [csvkit](https://csvkit.readthedocs.io/en/latest/index.html) suite is a set of tools that allow you to quickly analyze and extract fields from CSV files. Each csvkit tool allows you to do a specific task; GoAWK is more low-level and verbose, but also a more general tool ([`csvsql`](https://csvkit.readthedocs.io/en/latest/tutorial/3_power_tools.html#csvsql-and-sql2csv-ultimate-power) being the exception!). GoAWK also runs significantly faster than csvkit (the latter is written in Python).
 
-Below are a few snippets showing how you'd do some of the tasks in the csvkit documentation, but using GoAWK (the input file is [testdata/csv/nz-schools.csv](https://github.com/surdeus/goblin/src/tool/awk/blob/master/testdata/csv/nz-schools.csv)):
+Below are a few snippets showing how you'd do some of the tasks in the csvkit documentation, but using GoAWK (the input file is [testdata/csv/nz-schools.csv](https://github.com/mojosa-software/goblin/src/tool/awk/blob/master/testdata/csv/nz-schools.csv)):
 
 ### csvkit example: print column names
 
@@ -363,7 +363,7 @@ $ goawk -i csv -H '/Girls/ { d+=@"Decile"; n++ } END { print d/n }' testdata/csv
 
 The performance of GoAWK's CSV input and output mode is quite good, on a par with using the `encoding/csv` package from Go directly, and much faster than the `csv` module in Python. CSV input speed is significantly slower than `frawk`, though CSV output speed is significantly faster than `frawk`.
 
-Below are the results of some simple read and write [benchmarks](https://github.com/surdeus/goblin/src/tool/awk/blob/master/scripts/csvbench) using `goawk` and `frawk` as well as plain Python and Go. The output of the write benchmarks is a 1GB, 3.5 million row CSV file with 20 columns (including quoted columns); the input for the read benchmarks uses that same file. Times are in seconds, showing the best of three runs on a 64-bit Linux laptop with an SSD drive:
+Below are the results of some simple read and write [benchmarks](https://github.com/mojosa-software/goblin/src/tool/awk/blob/master/scripts/csvbench) using `goawk` and `frawk` as well as plain Python and Go. The output of the write benchmarks is a 1GB, 3.5 million row CSV file with 20 columns (including quoted columns); the input for the read benchmarks uses that same file. Times are in seconds, showing the best of three runs on a 64-bit Linux laptop with an SSD drive:
 
 Test            | goawk | frawk | Python |   Go
 --------------- | ----- | ----- | ------ | ----
@@ -378,10 +378,10 @@ Writing 1GB CSV |  5.64 |  13.0 |   17.0 | 3.24
   - keys would be ordered by `OFIELDS` (eg: `OFIELDS[1] = "name"; OFIELDS[2] = "age"`) or by "smart name" if `OFIELDS` not set ("smart name" meaning numeric if `a` keys are numeric, string otherwise)
   - `printrow(a)` could take an optional second `fields` array arg to use that instead of the global `OFIELDS`
 * Consider allowing `-H` to accept an optional list of field names which could be used as headers in the absence of headers in the file itself (either `-H=name,age` or `-i 'csv header=name,age'`).
-* Consider adding TrimLeadingSpace CSV input option. See: https://github.com/surdeus/goblin/src/tool/awk/issues/109
+* Consider adding TrimLeadingSpace CSV input option. See: https://github.com/mojosa-software/goblin/src/tool/awk/issues/109
 * Consider supporting `@"id" = 42` named field assignment.
 
 
 ## Feedback
 
-Please [open an issue](https://github.com/surdeus/goblin/src/tool/awk/issues) if you have bug reports or feature requests for GoAWK's CSV support.
+Please [open an issue](https://github.com/mojosa-software/goblin/src/tool/awk/issues) if you have bug reports or feature requests for GoAWK's CSV support.

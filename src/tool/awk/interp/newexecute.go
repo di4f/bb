@@ -6,7 +6,7 @@ import (
 	"context"
 	"math"
 
-	"github.com/surdeus/goblin/src/tool/awk/parser"
+	"github.com/mojosa-software/goblin/src/tool/awk/parser"
 )
 
 const checkContextOps = 1000 // for efficiency, only check context every N instructions

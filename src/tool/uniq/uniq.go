@@ -6,7 +6,7 @@ import(
 	"fmt"
 	"bufio"
 	"io"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/gomtool/src/mtool"
 )
 
 func Run(flagSet *mtool.Flags) {

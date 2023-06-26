@@ -11,7 +11,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/surdeus/goblin/src/pathx"
+	"github.com/mojosa-software/goblin/src/pathx"
 )
 
 type parser struct {

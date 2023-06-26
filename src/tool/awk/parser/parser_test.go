@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/surdeus/goblin/src/tool/awk/parser"
+	"github.com/mojosa-software/goblin/src/tool/awk/parser"
 )
 
 // NOTE: apart from TestParseAndString, the parser doesn't have

@@ -11,12 +11,12 @@ import (
 	"os"
 	"strings"
 
-	"github.com/surdeus/goscript/core"
-	"github.com/surdeus/goscript/env"
-	_ "github.com/surdeus/goscript/packages"
-	"github.com/surdeus/goscript/parser"
-	"github.com/surdeus/goscript/vm"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/goscript/core"
+	"github.com/mojosa-software/goscript/env"
+	_ "github.com/mojosa-software/goscript/packages"
+	"github.com/mojosa-software/goscript/parser"
+	"github.com/mojosa-software/goscript/vm"
+	"github.com/mojosa-software/gomtool/src/mtool"
 	"os/exec"
 	//"bytes"
 )
@@ -52,7 +52,6 @@ func (o Output) ShSplit() []string {
 func (o Output) Split(sep string) []string {
 	return strings.Split(o.String(), sep)
 }
-
 
 func Run(flagSet *mtool.Flags) {
 	

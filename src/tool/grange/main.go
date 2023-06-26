@@ -3,7 +3,7 @@ package grange
 import(
 	"fmt"
 	"strconv"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/gomtool/src/mtool"
 )
 
 var(

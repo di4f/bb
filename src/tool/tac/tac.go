@@ -5,7 +5,7 @@ import(
 	"io"
 	"fmt"
 	"bufio"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/gomtool/src/mtool"
 )
 
 func reverse(a []string) chan string {

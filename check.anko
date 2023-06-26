@@ -1,9 +1,15 @@
+var strings = import("strings")
+
 e = 5
 v = 53
 println(e + v)
 
 for v in Cmd("ls").Stdout().ShSplit() {
 	println("file:", v)
+}
+
+for v in strings.Split("big dick and me", " ") {
+	println(v)
 }
 
 if v < 55 {

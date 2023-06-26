@@ -3,7 +3,7 @@ package ln
 import (
 	"fmt"
 	"os"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/gomtool/src/mtool"
 	"path/filepath"
 )
 

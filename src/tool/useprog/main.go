@@ -4,7 +4,7 @@ import (
 	"os"
 	"os/exec"
 	"fmt"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/gomtool/src/mtool"
 	"path/filepath"
 )
 

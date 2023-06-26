@@ -2,7 +2,7 @@ package gfalse
 
 import(
 	"os"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/gomtool/src/mtool"
 )
 
 func Run(flags *mtool.Flags) {

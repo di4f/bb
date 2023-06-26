@@ -7,7 +7,7 @@ import(
 	"fmt"
 	"unicode"
 	"bufio"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/gomtool/src/mtool"
 )
 
 func HasWhiteSpace(s string) bool {

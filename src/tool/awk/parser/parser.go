@@ -11,9 +11,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/surdeus/goblin/src/tool/awk/internal/ast"
-	"github.com/surdeus/goblin/src/tool/awk/internal/compiler"
-	. "github.com/surdeus/goblin/src/tool/awk/lexer"
+	"github.com/mojosa-software/goblin/src/tool/awk/internal/ast"
+	"github.com/mojosa-software/goblin/src/tool/awk/internal/compiler"
+	. "github.com/mojosa-software/goblin/src/tool/awk/lexer"
 )
 
 // ParseError (actually *ParseError) is the type of error returned by

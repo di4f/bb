@@ -5,8 +5,8 @@ import(
 	"os"
 	"fmt"
 	"strings"
-	"github.com/surdeus/goblin/src/input"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/goblin/src/input"
+	"github.com/mojosa-software/gomtool/src/mtool"
 )
 var(
 	nArg int

@@ -1,9 +1,8 @@
-module github.com/surdeus/goblin
+module github.com/mojosa-software/goblin
 
 go 1.18
 
 require (
-	github.com/surdeus/anko v0.0.0-20230614164331-b18c1239c632 // indirect
-	github.com/surdeus/gomtool v0.0.0-20230324173629-09da5dcd0204 // indirect
-	github.com/surdeus/goscript v0.0.0-20230620135552-456d895c0747 // indirect
+	github.com/mojosa-software/gomtool v0.0.0-20230626085847-176486ff01a2
+	github.com/mojosa-software/goscript v0.0.0-20230626091305-86a004b7769c
 )

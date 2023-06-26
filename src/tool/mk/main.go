@@ -9,8 +9,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/surdeus/goblin/src/pathx"
-	"github.com/surdeus/gomtool/src/mtool"
+	"github.com/mojosa-software/goblin/src/pathx"
+	"github.com/mojosa-software/gomtool/src/mtool"
 )
 
 // True if messages should be printed without fancy colors.
