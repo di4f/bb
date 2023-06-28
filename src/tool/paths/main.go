@@ -17,10 +17,10 @@ import (
 var (
 	part     string
 	handlers = map[string]func(string) string{
-		"base": path.Base,
-		"ext":  path.Ext,
-		"dir":  path.Dir,
-		"all":  func(v string) string { return v },
+		"b": path.Base,
+		"e":  path.Ext,
+		"d":  path.Dir,
+		"a":  func(v string) string { return v },
 	}
 	handler   func(string) string
 	r         bool
@@ -57,8 +57,7 @@ func Run(flags *mtool.Flags) {
 	flags.BoolVar(&fromReal, "fr", false, "take input paths as real ones")
 	flags.BoolVar(&ec, "ec", false, "escape characters (mostly for '\\' char in Git bash")
 
-	flags.Parse()
-	args := flags.Args()
+	args := flags.Parse()
 	
 	lhandler, ok := handlers[part]
 	if !ok {
