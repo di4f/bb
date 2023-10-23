@@ -1,17 +1,6 @@
-# goblin
+# tk
 
-![](https://raw.githubusercontent.com/mojosa-software/goblin/master/media/goblin.jpg)
+![Insert here a gopher, please](https://raw.githubusercontent.com/reklesio/tk//master/media/gopher.png)
 
-
-GO Base utils LINked.
-
-Not POSIX compatible.
-
-Since Golang is so good at static files it makes sense to
-put many programs into one, so now it is gonna include many
-suckless and cat-v like stuff, including:
-
-* mk
-* awk
-* sed
+Gopher ToolKit. Not POSIX compatible BusyBox-like set of programs
 

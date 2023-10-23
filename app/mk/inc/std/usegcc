@@ -1,2 +1,0 @@
-CC = $GCC
-LD = $CC

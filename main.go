@@ -1,42 +1,37 @@
 package main
 
 import (
-	"github.com/mojosa-software/gomtool/src/mtool"
+	"github.com/reklesio/mtool"
 	
-	"github.com/mojosa-software/goblin/src/tool/awk"
-	"github.com/mojosa-software/goblin/src/tool/basename"
-	"github.com/mojosa-software/goblin/src/tool/cat"
-	"github.com/mojosa-software/goblin/src/tool/date"
-	"github.com/mojosa-software/goblin/src/tool/ec"
-	"github.com/mojosa-software/goblin/src/tool/echo"
-	"github.com/mojosa-software/goblin/src/tool/ftest"
-	"github.com/mojosa-software/goblin/src/tool/gfalse"
-	"github.com/mojosa-software/goblin/src/tool/grange"
-	"github.com/mojosa-software/goblin/src/tool/gtrue"
-	"github.com/mojosa-software/goblin/src/tool/in"
-	"github.com/mojosa-software/goblin/src/tool/ln"
-	"github.com/mojosa-software/goblin/src/tool/ls"
-	"github.com/mojosa-software/goblin/src/tool/mergelbl"
-	"github.com/mojosa-software/goblin/src/tool/mk"
-	"github.com/mojosa-software/goblin/src/tool/mkdir"
-	"github.com/mojosa-software/goblin/src/tool/noext"
-	"github.com/mojosa-software/goblin/src/tool/paths"
-	"github.com/mojosa-software/goblin/src/tool/quote"
-	"github.com/mojosa-software/goblin/src/tool/read"
-	"github.com/mojosa-software/goblin/src/tool/sort"
-	"github.com/mojosa-software/goblin/src/tool/tac"
-	"github.com/mojosa-software/goblin/src/tool/uniq"
-	"github.com/mojosa-software/goblin/src/tool/urlprs"
-	"github.com/mojosa-software/goblin/src/tool/useprog"
-	"github.com/mojosa-software/goblin/src/tool/wc"
-	"github.com/mojosa-software/goblin/src/tool/whoami"
-	"github.com/mojosa-software/goblin/src/tool/yes"
-	"github.com/mojosa-software/goblin/src/tool/script"
+	"github.com/reklesio/tk/tool/cat"
+	"github.com/reklesio/tk/tool/date"
+	"github.com/reklesio/tk/tool/ec"
+	"github.com/reklesio/tk/tool/echo"
+	"github.com/reklesio/tk/tool/ftest"
+	"github.com/reklesio/tk/tool/gfalse"
+	"github.com/reklesio/tk/tool/grange"
+	"github.com/reklesio/tk/tool/gtrue"
+	"github.com/reklesio/tk/tool/in"
+	"github.com/reklesio/tk/tool/ln"
+	"github.com/reklesio/tk/tool/ls"
+	"github.com/reklesio/tk/tool/mergelbl"
+	"github.com/reklesio/tk/tool/mkdir"
+	"github.com/reklesio/tk/tool/noext"
+	"github.com/reklesio/tk/tool/paths"
+	"github.com/reklesio/tk/tool/quote"
+	"github.com/reklesio/tk/tool/read"
+	"github.com/reklesio/tk/tool/sort"
+	"github.com/reklesio/tk/tool/tac"
+	"github.com/reklesio/tk/tool/uniq"
+	"github.com/reklesio/tk/tool/urlprs"
+	"github.com/reklesio/tk/tool/useprog"
+	"github.com/reklesio/tk/tool/wc"
+	"github.com/reklesio/tk/tool/whoami"
+	"github.com/reklesio/tk/tool/yes"
 )
 
 func main() {
 	tools := mtool.Tools{
-		"basename": mtool.Tool{basename.Run, "get base name of file path", ""},
 		"cat":      mtool.Tool{cat.Run, "print file data to the standard output", ""},
 		"mkdir":    mtool.Tool{mkdir.Run, "make new directory", ""},
 		"echo":     mtool.Tool{echo.Run, "print strings to the standard output", ""},
@@ -59,8 +54,6 @@ func main() {
 		"range":    mtool.Tool{grange.Run, "too lazy", ""},
 		"in":       mtool.Tool{in.Run, "filter strings from stdin that aren not in arguments", ""},
 		"which":  mtool.Tool{useprog.Run, "print the name or the path of the first existing program in arg list", ""},
-		"mk":       mtool.Tool{mk.Run, "file dependency system, simpler make", ""},
-		"awk":      mtool.Tool{awk.Run, "simple scripting language for working with string templates", ""},
 		"paths": mtool.Tool{
 			paths.Run,
 			"convert UNIX slash separated paths into the OS compatible ones",
@@ -76,12 +69,7 @@ func main() {
 			"link files",
 			"",
 		},
-		"script": mtool.Tool{
-			script.Run,
-			"run embedded anko",
-			"",
-		},
 	}
 
-	mtool.Main("goblin", tools)
+	mtool.Main("tk", tools)
 }
