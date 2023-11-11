@@ -31,12 +31,18 @@ import (
 var root = mtool.T("tk").Subs(
 	mtool.T("cat").Func(cat.Run).Desc(
 		"concatenate files",
+	).Usage(
+		"[file1 file2 ...fileN]",
 	),
 	mtool.T("mkdir").Func(mkdir.Run).Desc(
 		"make new directories",
+	).Usage(
+		"<dir1 [dir2 dir3 ...dirN]>",
 	),
 	mtool.T("echo").Func(echo.Run).Desc(
 		"print strings",
+	).Usage(
+		"[str1 str2 ...strN]",
 	),
 	mtool.T("true").Func(func(flags *mtool.Flags){
 		os.Exit(0)
@@ -52,6 +58,8 @@ var root = mtool.T("tk").Subs(
 	),
 	mtool.T("ls").Func(ls.Run).Desc(
 		"list files",
+	).Usage(
+		"[fileDir1 fileDir2 ...fileDirN]",
 	),
 	mtool.T("yes").Func(yes.Run).Desc(
 		"repeat string",
