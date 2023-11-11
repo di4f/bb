@@ -7,7 +7,7 @@ import(
 	"fmt"
 	"unicode"
 	"bufio"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/cli/mtool"
 )
 
 func HasWhiteSpace(s string) bool {

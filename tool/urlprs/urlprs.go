@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net"
 	"net/url"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/cli/mtool"
 )
 
 var nilStr = "_"

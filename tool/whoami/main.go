@@ -5,7 +5,7 @@ import(
 	"os/user"
 	"fmt"
 	"log"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/cli/mtool"
 )
 
 func Run(flagSet *mtool.Flags) {

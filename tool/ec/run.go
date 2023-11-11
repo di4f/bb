@@ -6,7 +6,7 @@ import(
 	"os"
 	"bufio"
 	"log"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/cli/mtool"
 )
 
 const(

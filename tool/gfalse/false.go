@@ -2,7 +2,7 @@ package gfalse
 
 import(
 	"os"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/cli/mtool"
 )
 
 func Run(flags *mtool.Flags) {

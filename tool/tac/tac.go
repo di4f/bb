@@ -5,7 +5,7 @@ import(
 	"io"
 	"fmt"
 	"bufio"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/cli/mtool"
 )
 
 func reverse(a []string) chan string {

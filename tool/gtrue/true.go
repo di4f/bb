@@ -1,5 +1,5 @@
 package gtrue
 
-import "github.com/reklesio/mtool"
+import "github.com/omnipunk/cli/mtool"
 
 func Run(flags *mtool.Flags) {}

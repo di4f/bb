@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 	"sort"
-	"github.com/reklesio/tk/input"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/tk/input"
+	"github.com/omnipunk/cli/mtool"
 )
 
 func Run(flagSet *mtool.Flags) {

@@ -9,9 +9,9 @@ import (
 	"path"
 	"strings"
 
-	//"github.com/reklesio/tk/pathx"
+	//"github.com/omnipunk/tk/pathx"
 	"path/filepath"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/cli/mtool"
 )
 
 var (

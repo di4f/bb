@@ -5,8 +5,8 @@ import(
 	"os"
 	"fmt"
 	"strings"
-	"github.com/reklesio/tk/input"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/tk/input"
+	"github.com/omnipunk/cli/mtool"
 )
 var(
 	nArg int

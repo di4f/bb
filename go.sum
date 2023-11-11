@@ -1,8 +1,2 @@
-github.com/mojosa-software/goscript v0.0.0-20230626091305-86a004b7769c h1:y7RQZz/zJDARRJkn4szD8N2rK6K9NU1vUNPwahtW5zw=
-github.com/mojosa-software/goscript v0.0.0-20230626091305-86a004b7769c/go.mod h1:LtBn7lQTgA/TMEL8Y+dGkD6XWHV2gxRPZXiqCZt3HRc=
-github.com/reklesio v0.0.0-20230626085847-176486ff01a2 h1:xbw1/w6ZB8xRmaTS0mQvfTETF8M2/tSBfHJIR+cJyNE=
-github.com/reklesio v0.0.0-20230626085847-176486ff01a2/go.mod h1:cJ6/4rcQ/s22RTLuLtypFh7gubwG4OLSph3NHX3haAw=
-github.com/reklesio v0.0.0-20230628111258-73d5a2f1940f h1:lsvXiy5XeOGCiOvkzuX0jA11jJf3j998Xes0/gmk50A=
-github.com/reklesio v0.0.0-20230628111258-73d5a2f1940f/go.mod h1:cJ6/4rcQ/s22RTLuLtypFh7gubwG4OLSph3NHX3haAw=
-github.com/reklesio/mtool v0.0.0-20231023113051-bbe64fae523e h1:2ntFru8B2HDixWKy5EBU4QOcJGyHR4GhB8tWua4Leos=
-github.com/reklesio/mtool v0.0.0-20231023113051-bbe64fae523e/go.mod h1:G6WEew5BI+7sorvUztT8wh7mr2jp2Vh5IFjkqWGVM34=
+github.com/omnipunk/cli v0.0.0-20231110091353-f877427ca833 h1:sNNDuH0hbT+3Mqh200JM54ZAQPt0g9LsOeUzMMadg+4=
+github.com/omnipunk/cli v0.0.0-20231110091353-f877427ca833/go.mod h1:j1oX8nchf3eIbEvGLIDe+glTXT/Mkz6w4UO1/3EQ8tc=

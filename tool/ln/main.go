@@ -3,7 +3,7 @@ package ln
 import (
 	"fmt"
 	"os"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/cli/mtool"
 	"path/filepath"
 )
 

@@ -1,75 +1,110 @@
 package main
 
 import (
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/cli/mtool"
 	
-	"github.com/reklesio/tk/tool/cat"
-	"github.com/reklesio/tk/tool/date"
-	"github.com/reklesio/tk/tool/ec"
-	"github.com/reklesio/tk/tool/echo"
-	"github.com/reklesio/tk/tool/ftest"
-	"github.com/reklesio/tk/tool/gfalse"
-	"github.com/reklesio/tk/tool/grange"
-	"github.com/reklesio/tk/tool/gtrue"
-	"github.com/reklesio/tk/tool/in"
-	"github.com/reklesio/tk/tool/ln"
-	"github.com/reklesio/tk/tool/ls"
-	"github.com/reklesio/tk/tool/mergelbl"
-	"github.com/reklesio/tk/tool/mkdir"
-	"github.com/reklesio/tk/tool/noext"
-	"github.com/reklesio/tk/tool/paths"
-	"github.com/reklesio/tk/tool/quote"
-	"github.com/reklesio/tk/tool/read"
-	"github.com/reklesio/tk/tool/sort"
-	"github.com/reklesio/tk/tool/tac"
-	"github.com/reklesio/tk/tool/uniq"
-	"github.com/reklesio/tk/tool/urlprs"
-	"github.com/reklesio/tk/tool/useprog"
-	"github.com/reklesio/tk/tool/wc"
-	"github.com/reklesio/tk/tool/whoami"
-	"github.com/reklesio/tk/tool/yes"
+	"github.com/omnipunk/tk/tool/cat"
+	"github.com/omnipunk/tk/tool/date"
+	"github.com/omnipunk/tk/tool/ec"
+	"github.com/omnipunk/tk/tool/echo"
+	"github.com/omnipunk/tk/tool/ftest"
+	"github.com/omnipunk/tk/tool/grange"
+	"github.com/omnipunk/tk/tool/in"
+	"github.com/omnipunk/tk/tool/ln"
+	"github.com/omnipunk/tk/tool/ls"
+	"github.com/omnipunk/tk/tool/mergelbl"
+	"github.com/omnipunk/tk/tool/mkdir"
+	"github.com/omnipunk/tk/tool/paths"
+	"github.com/omnipunk/tk/tool/quote"
+	"github.com/omnipunk/tk/tool/read"
+	"github.com/omnipunk/tk/tool/sort"
+	"github.com/omnipunk/tk/tool/tac"
+	"github.com/omnipunk/tk/tool/uniq"
+	"github.com/omnipunk/tk/tool/urlprs"
+	"github.com/omnipunk/tk/tool/useprog"
+	"github.com/omnipunk/tk/tool/wc"
+	"github.com/omnipunk/tk/tool/whoami"
+	"github.com/omnipunk/tk/tool/yes"
+	"os"
+)
+
+var root = mtool.T("tk").Subs(
+	mtool.T("cat").Func(cat.Run).Desc(
+		"concatenate files",
+	),
+	mtool.T("mkdir").Func(mkdir.Run).Desc(
+		"make new directories",
+	),
+	mtool.T("echo").Func(echo.Run).Desc(
+		"print strings",
+	),
+	mtool.T("true").Func(func(flags *mtool.Flags){
+		os.Exit(0)
+	}).Desc("exit successfuly"),
+	mtool.T("false").Func(func(flags *mtool.Flags){
+		os.Exit(1)
+	}).Desc("exit with failure"),
+	mtool.T("sort").Func(sort.Run).Desc(
+		"sort strings",
+	),
+	mtool.T("tac").Func(tac.Run).Desc(
+		"reversed cat",
+	),
+	mtool.T("ls").Func(ls.Run).Desc(
+		"list files",
+	),
+	mtool.T("yes").Func(yes.Run).Desc(
+		"repeat string",
+	),
+	mtool.T("date").Func(date.Run).Desc(
+		"print date",
+	),
+	mtool.T("uniq").Func(uniq.Run).Desc(
+		"filter repeated strings",
+	),
+	mtool.T("quote").Func(quote.Run).Desc(
+		"quote strings with spaces",
+	),
+	mtool.T("urlprs").Func(urlprs.Run).Desc(
+		"parse URL",
+	),
+	mtool.T("read").Func(read.Run).Desc(
+		"read lines",
+	),
+	mtool.T("ec").Func(ec.Run).Desc(
+		"render escape characters",
+	),
+	mtool.T("lbl").Func(mergelbl.Run).Desc(
+		"merge files line by line",
+	),
+	mtool.T("ftest").Func(ftest.Run).Desc(
+		"filter files",
+	),
+	mtool.T("wc").Func(wc.Run).Desc(
+		"word, rune, byte counts",
+	),
+	mtool.T("range").Func(grange.Run).Desc(
+		"print num range",
+	),
+	mtool.T("in").Func(in.Run).Desc(
+		"print only strings that are in arguments",
+	),
+	mtool.T("which").Func(useprog.Run).Desc(
+		"print path to executable",
+	),
+	mtool.T("whoami").Func(whoami.Run).Desc(
+		"print your username",
+	),
+	mtool.T("ln").Func(ln.Run).Desc(
+		"link files",
+	),
+	mtool.T("paths").Func(paths.Run).Desc(
+		"print different parts of paths",
+	),
+).Desc(
+	"ToolKit, BusyBox-like not POSIX-compatible utilities",
 )
 
 func main() {
-	tools := mtool.Tools{
-		"cat":      mtool.Tool{cat.Run, "print file data to the standard output", ""},
-		"mkdir":    mtool.Tool{mkdir.Run, "make new directory", ""},
-		"echo":     mtool.Tool{echo.Run, "print strings to the standard output", ""},
-		"true":     mtool.Tool{gtrue.Run, "exit with true status", ""},
-		"false":    mtool.Tool{gfalse.Run, "exit with false status", ""},
-		"sort":     mtool.Tool{sort.Run, "sort strings inputed from standard input", ""},
-		"tac":      mtool.Tool{tac.Run, "print strings from standard input in reversed order", ""},
-		"ls":       mtool.Tool{ls.Run, "list directory content", ""},
-		"yes":      mtool.Tool{yes.Run, "print string infinite/exact amount times", ""},
-		"date":     mtool.Tool{date.Run, "print current date", ""},
-		"uniq":     mtool.Tool{uniq.Run, "filter repeated strings", ""},
-		"quote":    mtool.Tool{quote.Run, "quote words containing space characters", ""},
-		"urlprs":   mtool.Tool{urlprs.Run, "parse URLs", ""},
-		"noext":    mtool.Tool{noext.Run, "print file path without extension", ""},
-		"mergelbl": mtool.Tool{mergelbl.Run, "merge line by line", ""},
-		"ec":       mtool.Tool{ec.Run, "render escape sequences", ""},
-		"read":     mtool.Tool{read.Run, "read lines and exit", ""},
-		"wc":       mtool.Tool{wc.Run, "count words, bytes, runes etc", ""},
-		"ftest":    mtool.Tool{ftest.Run, "filter files by specified features", ""},
-		"range":    mtool.Tool{grange.Run, "too lazy", ""},
-		"in":       mtool.Tool{in.Run, "filter strings from stdin that aren not in arguments", ""},
-		"which":  mtool.Tool{useprog.Run, "print the name or the path of the first existing program in arg list", ""},
-		"paths": mtool.Tool{
-			paths.Run,
-			"convert UNIX slash separated paths into the OS compatible ones",
-			"",
-		},
-		"whoami": mtool.Tool{
-			whoami.Run,
-			"print current user name",
-			"",
-		},
-		"ln": mtool.Tool{
-			ln.Run,
-			"link files",
-			"",
-		},
-	}
-
-	mtool.Main("tk", tools)
+	root.Run(os.Args[1:])
 }

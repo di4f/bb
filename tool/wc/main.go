@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"unicode"
 	"strconv"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/cli/mtool"
 )
 
 var (

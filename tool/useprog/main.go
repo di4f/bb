@@ -4,7 +4,7 @@ import (
 	"os"
 	"os/exec"
 	"fmt"
-	"github.com/reklesio/mtool"
+	"github.com/omnipunk/cli/mtool"
 	"path/filepath"
 )
 
