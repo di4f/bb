@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/omnipunk/cli/mtool"
 	
 	"github.com/omnipunk/tk/tool/cat"
@@ -108,6 +109,15 @@ var root = mtool.T("tk").Subs(
 	),
 	mtool.T("paths").Func(paths.Run).Desc(
 		"print different parts of paths",
+	),
+	mtool.T("env").Func(func(flags *mtool.Flags){
+		flags.Parse()
+		envs := os.Environ()
+		for _, env := range envs {
+			fmt.Println(env)
+		}
+	}).Desc(
+		"print all the environment variables",
 	),
 ).Desc(
 	"ToolKit, BusyBox-like not POSIX-compatible utilities",
