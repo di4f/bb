@@ -1,4 +1,4 @@
-module github.com/omnipunk/tk
+module github.com/omnipunk/bb
 
 go 1.18
 

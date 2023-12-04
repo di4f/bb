@@ -1,39 +1,40 @@
 /* Yes program implementation. */
 package yes
 
-import(
+import (
 	"os"
 	"fmt"
 	"strings"
-	"github.com/omnipunk/tk/input"
+	"github.com/omnipunk/bb/input"
 	"github.com/omnipunk/cli/mtool"
 )
-var(
+
+var (
 	nArg int
 )
 
-func yes(s string){
-	if nArg<0{
-		for{
+func yes(s string) {
+	if nArg < 0 {
+		for {
 			fmt.Print(s)
 		}
 	} else {
-		for i:=0 ; i<nArg ; i+=1 {
+		for i := 0; i < nArg; i += 1 {
 			fmt.Print(s)
 		}
 	}
 }
 
 func Run(flagSet *mtool.Flags) {
-	var(
+	var (
 		stdinFlag bool
-		nFlag bool
-		s string
+		nFlag     bool
+		s         string
 	)
 	flagSet.BoolVar(&stdinFlag, "s", false, "Read string from stdin.")
 	flagSet.BoolVar(&nFlag, "n", false, "Do not add net line character.")
 	flagSet.IntVar(&nArg, "N", -1, "Repeat input N times. Negative value means infinite cycle.")
-	
+
 	flagSet.Parse()
 	args := flagSet.Args()
 
@@ -41,7 +42,7 @@ func Run(flagSet *mtool.Flags) {
 		in, _ := input.ReadAllRaw(os.Stdin)
 		s = string(in)
 	} else {
-		if len(args)>0 {
+		if len(args) > 0 {
 			s = strings.Join(args, " ")
 		} else {
 			s = "y"

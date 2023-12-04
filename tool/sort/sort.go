@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"sort"
-	"github.com/omnipunk/tk/input"
+	"github.com/omnipunk/bb/input"
 	"github.com/omnipunk/cli/mtool"
 )
 

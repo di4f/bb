@@ -3,33 +3,33 @@ package main
 import (
 	"fmt"
 	"github.com/omnipunk/cli/mtool"
-	
-	"github.com/omnipunk/tk/tool/cat"
-	"github.com/omnipunk/tk/tool/date"
-	"github.com/omnipunk/tk/tool/ec"
-	"github.com/omnipunk/tk/tool/echo"
-	"github.com/omnipunk/tk/tool/ftest"
-	"github.com/omnipunk/tk/tool/grange"
-	"github.com/omnipunk/tk/tool/in"
-	"github.com/omnipunk/tk/tool/ln"
-	"github.com/omnipunk/tk/tool/ls"
-	"github.com/omnipunk/tk/tool/mergelbl"
-	"github.com/omnipunk/tk/tool/mkdir"
-	"github.com/omnipunk/tk/tool/paths"
-	"github.com/omnipunk/tk/tool/quote"
-	"github.com/omnipunk/tk/tool/read"
-	"github.com/omnipunk/tk/tool/sort"
-	"github.com/omnipunk/tk/tool/tac"
-	"github.com/omnipunk/tk/tool/uniq"
-	"github.com/omnipunk/tk/tool/urlprs"
-	"github.com/omnipunk/tk/tool/useprog"
-	"github.com/omnipunk/tk/tool/wc"
-	"github.com/omnipunk/tk/tool/whoami"
-	"github.com/omnipunk/tk/tool/yes"
+
+	"github.com/omnipunk/bb/tool/cat"
+	"github.com/omnipunk/bb/tool/date"
+	"github.com/omnipunk/bb/tool/ec"
+	"github.com/omnipunk/bb/tool/echo"
+	"github.com/omnipunk/bb/tool/ftest"
+	"github.com/omnipunk/bb/tool/grange"
+	"github.com/omnipunk/bb/tool/in"
+	"github.com/omnipunk/bb/tool/ln"
+	"github.com/omnipunk/bb/tool/ls"
+	"github.com/omnipunk/bb/tool/mergelbl"
+	"github.com/omnipunk/bb/tool/mkdir"
+	"github.com/omnipunk/bb/tool/paths"
+	"github.com/omnipunk/bb/tool/quote"
+	"github.com/omnipunk/bb/tool/read"
+	"github.com/omnipunk/bb/tool/sort"
+	"github.com/omnipunk/bb/tool/tac"
+	"github.com/omnipunk/bb/tool/uniq"
+	"github.com/omnipunk/bb/tool/urlprs"
+	"github.com/omnipunk/bb/tool/useprog"
+	"github.com/omnipunk/bb/tool/wc"
+	"github.com/omnipunk/bb/tool/whoami"
+	"github.com/omnipunk/bb/tool/yes"
 	"os"
 )
 
-var root = mtool.T("tk").Subs(
+var root = mtool.T("bb").Subs(
 	mtool.T("cat").Func(cat.Run).Desc(
 		"concatenate files",
 	).Usage(
@@ -45,10 +45,10 @@ var root = mtool.T("tk").Subs(
 	).Usage(
 		"[str1 str2 ...strN]",
 	),
-	mtool.T("true").Func(func(flags *mtool.Flags){
+	mtool.T("true").Func(func(flags *mtool.Flags) {
 		os.Exit(0)
 	}).Desc("exit successfuly"),
-	mtool.T("false").Func(func(flags *mtool.Flags){
+	mtool.T("false").Func(func(flags *mtool.Flags) {
 		os.Exit(1)
 	}).Desc("exit with failure"),
 	mtool.T("sort").Func(sort.Run).Desc(
@@ -110,7 +110,7 @@ var root = mtool.T("tk").Subs(
 	mtool.T("paths").Func(paths.Run).Desc(
 		"print different parts of paths",
 	),
-	mtool.T("env").Func(func(flags *mtool.Flags){
+	mtool.T("env").Func(func(flags *mtool.Flags) {
 		flags.Parse()
 		envs := os.Environ()
 		for _, env := range envs {
@@ -120,7 +120,7 @@ var root = mtool.T("tk").Subs(
 		"print all the environment variables",
 	),
 ).Desc(
-	"ToolKit, BusyBox-like not POSIX-compatible utilities",
+	"not POSIX compatible BusyBox utilities",
 )
 
 func main() {
