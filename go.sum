@@ -1,4 +1,2 @@
-github.com/omnipunk/cli v0.0.0-20231110091353-f877427ca833 h1:sNNDuH0hbT+3Mqh200JM54ZAQPt0g9LsOeUzMMadg+4=
-github.com/omnipunk/cli v0.0.0-20231110091353-f877427ca833/go.mod h1:j1oX8nchf3eIbEvGLIDe+glTXT/Mkz6w4UO1/3EQ8tc=
-github.com/omnipunk/cli v0.0.0-20231111174053-707875fd6a00 h1:/yDyAzahNPrj3lzksfO6wfqk2pC8R1djXhbLjD2evOw=
-github.com/omnipunk/cli v0.0.0-20231111174053-707875fd6a00/go.mod h1:j1oX8nchf3eIbEvGLIDe+glTXT/Mkz6w4UO1/3EQ8tc=
+github.com/di4f/cli v0.0.0-20231214183522-32f786133a58 h1:b3bk2zD7YqLJDYoNAGawVbJovkNzJPDULYuF6+ar09w=
+github.com/di4f/cli v0.0.0-20231214183522-32f786133a58/go.mod h1:a2hUcQVjIEYR0VW3gf640cgbxCvUwA9vwKvkSkw1SUU=

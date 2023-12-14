@@ -6,7 +6,7 @@ import(
 	"fmt"
 	"bufio"
 	"io"
-	"github.com/omnipunk/cli/mtool"
+	"github.com/di4f/cli/mtool"
 )
 
 func Run(flagSet *mtool.Flags) {

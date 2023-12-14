@@ -3,7 +3,7 @@ package echo
 
 import (
 	"fmt"
-	"github.com/omnipunk/cli/mtool"
+	"github.com/di4f/cli/mtool"
 )
 
 var(

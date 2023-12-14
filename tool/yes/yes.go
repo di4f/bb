@@ -5,8 +5,8 @@ import (
 	"os"
 	"fmt"
 	"strings"
-	"github.com/omnipunk/bb/input"
-	"github.com/omnipunk/cli/mtool"
+	"github.com/di4f/bb/input"
+	"github.com/di4f/cli/mtool"
 )
 
 var (

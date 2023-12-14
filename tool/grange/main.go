@@ -3,7 +3,7 @@ package grange
 import(
 	"fmt"
 	"strconv"
-	"github.com/omnipunk/cli/mtool"
+	"github.com/di4f/cli/mtool"
 )
 
 var(

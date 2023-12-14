@@ -9,9 +9,9 @@ import (
 	"path"
 	"strings"
 
-	//"github.com/omnipunk/tk/pathx"
+	//"github.com/di4f/tk/pathx"
 	"path/filepath"
-	"github.com/omnipunk/cli/mtool"
+	"github.com/di4f/cli/mtool"
 )
 
 var (
