@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"path/filepath"
-	"github.com/di4f/cli/mtool"
+	"github.com/vultras/cli/mtool"
 )
 
 func Run(flagSet *mtool.Flags) {

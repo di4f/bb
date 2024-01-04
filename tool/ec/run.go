@@ -6,7 +6,7 @@ import(
 	"os"
 	"bufio"
 	"log"
-	"github.com/di4f/cli/mtool"
+	"github.com/vultras/cli/mtool"
 )
 
 const(

@@ -4,7 +4,7 @@ import (
 	"os"
 	"os/exec"
 	"fmt"
-	"github.com/di4f/cli/mtool"
+	"github.com/vultras/cli/mtool"
 	"path/filepath"
 )
 

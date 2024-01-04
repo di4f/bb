@@ -3,7 +3,7 @@ package ln
 import (
 	"fmt"
 	"os"
-	"github.com/di4f/cli/mtool"
+	"github.com/vultras/cli/mtool"
 	"path/filepath"
 )
 

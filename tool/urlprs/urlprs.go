@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net"
 	"net/url"
-	"github.com/di4f/cli/mtool"
+	"github.com/vultras/cli/mtool"
 )
 
 var nilStr = "_"

@@ -1,5 +1,5 @@
-module github.com/di4f/bb
+module github.com/vultras/bb
 
 go 1.18
 
-require github.com/di4f/cli v0.0.0-20231214183522-32f786133a58
+require github.com/vultras/cli v0.0.0-20240104140711-6890b8ea2e24

@@ -9,9 +9,9 @@ import (
 	"path"
 	"strings"
 
-	//"github.com/di4f/tk/pathx"
+	//"github.com/vultras/tk/pathx"
 	"path/filepath"
-	"github.com/di4f/cli/mtool"
+	"github.com/vultras/cli/mtool"
 )
 
 var (

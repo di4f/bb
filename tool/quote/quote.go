@@ -7,7 +7,7 @@ import(
 	"fmt"
 	"unicode"
 	"bufio"
-	"github.com/di4f/cli/mtool"
+	"github.com/vultras/cli/mtool"
 )
 
 func HasWhiteSpace(s string) bool {

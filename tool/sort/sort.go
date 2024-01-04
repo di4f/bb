@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 	"sort"
-	"github.com/di4f/bb/input"
-	"github.com/di4f/cli/mtool"
+	"github.com/vultras/bb/input"
+	"github.com/vultras/cli/mtool"
 )
 
 func Run(flagSet *mtool.Flags) {

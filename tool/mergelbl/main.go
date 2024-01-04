@@ -5,7 +5,7 @@ import(
 	"fmt"
 	"bufio"
 	"log"
-	"github.com/di4f/cli/mtool"
+	"github.com/vultras/cli/mtool"
 )
 
 func Run(flagSet *mtool.Flags) {
