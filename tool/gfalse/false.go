@@ -2,7 +2,7 @@ package gfalse
 
 import(
 	"os"
-	"github.com/vultras/cli/mtool"
+	"vultras.su/core/cli/mtool"
 )
 
 func Run(flags *mtool.Flags) {

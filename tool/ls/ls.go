@@ -5,7 +5,7 @@ import(
 	"strings"
 	"regexp"
 	"path"
-	"github.com/vultras/cli/mtool"
+	"vultras.su/core/cli/mtool"
 )
 
 var(

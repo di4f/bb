@@ -5,8 +5,8 @@ import (
 	"os"
 	"fmt"
 	"strings"
-	"github.com/vultras/bb/input"
-	"github.com/vultras/cli/mtool"
+	"vultras.su/core/bb/input"
+	"vultras.su/core/cli/mtool"
 )
 
 var (

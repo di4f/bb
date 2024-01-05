@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"path/filepath"
-	"github.com/vultras/cli/mtool"
+	"vultras.su/core/cli/mtool"
 )
 
 func Run(flagSet *mtool.Flags) {

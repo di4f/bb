@@ -1,2 +1,2 @@
-github.com/vultras/cli v0.0.0-20240104140711-6890b8ea2e24 h1:dtvNOsgZWz3P87suCr5FKeTevNGLzrVc/uKiKGxW8e0=
-github.com/vultras/cli v0.0.0-20240104140711-6890b8ea2e24/go.mod h1:xkex4RuKXi1a1XOYE1SI0mzsgQ1KXbYwLgXHwS5VbNI=
+vultras.su/core/cli v0.0.0-20240104195345-5d79542278a0 h1:acA77oEg7hDuUchyBvw7scG9gayVLFAC9/CGuqyfLSA=
+vultras.su/core/cli v0.0.0-20240104195345-5d79542278a0/go.mod h1:rYu/sFWE3vUkDSSJCZt+K1aVaso0MYcZ+tmxQd4whdQ=

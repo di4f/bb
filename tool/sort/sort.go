@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 	"sort"
-	"github.com/vultras/bb/input"
-	"github.com/vultras/cli/mtool"
+	"vultras.su/core/bb/input"
+	"vultras.su/core/cli/mtool"
 )
 
 func Run(flagSet *mtool.Flags) {

@@ -3,7 +3,7 @@ package ln
 import (
 	"fmt"
 	"os"
-	"github.com/vultras/cli/mtool"
+	"vultras.su/core/cli/mtool"
 	"path/filepath"
 )
 
